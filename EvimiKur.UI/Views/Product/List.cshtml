@@ -1,0 +1,63 @@
+﻿@model List<ProductListDto>
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Category List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>UnitPrice</th>
+                                <th>Status</th>
+                                <th>Discontinued</th>
+                                <th>Category</th>
+                                <th>QuantityPerUnit</th>
+                                <th>UnitInStock</th>
+                                <th>UnitsInOrder</th>
+                                <th>ImagePath</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.UnitPrice</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.Discontinued</td>
+                                    <td>@item.Category</td>
+                                    <td>@item.QuantityPerUnit</td>
+                                    <td>@item.UnitInStock</td>
+                                    <td>@item.UnitsInOrder</td>
+                                    <td>@item.ImagePath</td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Create" class="btn btn-outline-dark btn-block">Create New Product</a>
+            </div>
+        </div>
+    </div>
+</div>
+

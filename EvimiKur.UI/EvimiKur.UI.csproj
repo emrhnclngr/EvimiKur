@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\css\css\**" />
+    <Compile Remove="wwwroot\js\js\**" />
+    <Content Remove="wwwroot\css\css\**" />
+    <Content Remove="wwwroot\js\js\**" />
+    <EmbeddedResource Remove="wwwroot\css\css\**" />
+    <EmbeddedResource Remove="wwwroot\js\js\**" />
+    <None Remove="wwwroot\css\css\**" />
+    <None Remove="wwwroot\js\js\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EvimiKur.Bussiness\EvimiKur.Bussiness.csproj" />
+  </ItemGroup>
+
+</Project>
