@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EvimiKur.Dtos\EvimiKur.Dtos.csproj" />
     <ProjectReference Include="..\EvimiKur.Entities\EvimiKur.Entities.csproj" />
   </ItemGroup>
 

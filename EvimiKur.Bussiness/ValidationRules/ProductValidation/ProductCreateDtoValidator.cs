@@ -1,5 +1,4 @@
 ﻿using EvimiKur.Dtos;
-using EvimiKur.Dtos;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

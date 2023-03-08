@@ -26,6 +26,8 @@ namespace EvimiKur.DataAccess.Context
             modelBuilder.ApplyConfiguration(new ProductReturnConfiguration());
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new SupplierConfiguration());
+
+          
         }
 
 

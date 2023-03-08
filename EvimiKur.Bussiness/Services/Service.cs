@@ -6,6 +6,7 @@ using EvimiKur.DataAccess.UnitOfWork;
 using EvimiKur.Dtos.Interfaces;
 using EvimiKur.Entities.Base;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace EvimiKur.Bussiness.Services
             _createDtoValidator = createDtoValidator;
             _updateDtoValidator = updateDtoValidator;
             _uow = uow;
+            
         }
 
         public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)

@@ -1,9 +1,11 @@
 ﻿using EvimiKur.Common;
 using EvimiKur.Dtos.Interfaces;
 using EvimiKur.Entities.Base;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,5 +24,6 @@ namespace EvimiKur.Bussiness.Interfaces
         Task<IResponse> RemoveAsync(int id);
         Task<IResponse<IDto>> GetByIdAsync<IDto>(int id);
         Task<IResponse<List<ListDto>>> GetAllAsync();
+      
     }
 }

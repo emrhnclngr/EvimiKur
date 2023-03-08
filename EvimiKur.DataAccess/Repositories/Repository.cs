@@ -1,8 +1,11 @@
 ﻿using EvimiKur.Common.Enums;
 using EvimiKur.DataAccess.Context;
 using EvimiKur.DataAccess.Interfaces;
+using EvimiKur.Dtos;
 using EvimiKur.Entities.Base;
+using EvimiKur.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +16,35 @@ using System.Threading.Tasks;
 namespace EvimiKur.DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
+        
     {
         private readonly EvimiKurContext _context;
+        
 
         public Repository(EvimiKurContext context)
         {
             _context = context;
+            
         }
 
         public async Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().AsNoTracking().ToListAsync();
+            
+        }
+        public async Task<List<TResult>> GetFilteredList<TResult>(Expression<Func<T, TResult>> select,
+                                                                    Expression<Func<T, bool>> where = null,
+                                                                    Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> join = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            if (join != null) query = join(query);
+
+            if (where != null) query = query.Where(where);
+
+            if (orderBy != null) return await orderBy(query).Select(select).ToListAsync();
+
+            else return await query.Select(select).ToListAsync();
         }
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
@@ -50,7 +71,7 @@ namespace EvimiKur.DataAccess.Repositories
         {
             return !asNoTracking ? await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter) : await _context.Set<T>().SingleOrDefaultAsync(filter);
         }
-
+   
         public IQueryable<T> GetQuery()
         {
             return _context.Set<T>().AsQueryable();
