@@ -36,6 +36,7 @@ namespace EvimiKur.UI
             services.AddDependencies(Configuration);
 
             services.AddTransient<IValidator<ProductCreateModel>, ProductCreateModelValidator>();
+            services.AddTransient<IValidator<AppUserCreateModel>, AppUserCreateModelValidator>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
    .AddCookie(opt =>
@@ -56,6 +57,7 @@ namespace EvimiKur.UI
             var profiles = ProfileHelper.GetProfiles();
 
             profiles.Add(new ProductCreateModelProfile());
+            profiles.Add(new AppUserCreateModelProfile());
 
             var configuration = new MapperConfiguration(opt =>
             {

@@ -11,18 +11,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using EvimiKur.Common.Enums;
 using Udemy.AdvertisementApp.UI.Extensions;
 using FluentValidation;
+using System;
+using System.Linq;
+using EvimiKur.UI.Models;
+using AutoMapper;
+using EvimiKur.Common;
 
 namespace EvimiKur.UI.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAppUserService _appUserService;
-        private readonly IValidator<AppUserCreateDto> _appUserCreateValidator;
+        private readonly IValidator<AppUserCreateModel> _appUserCreateModelValidator;
+        private readonly IMapper _mapper;
 
-        public AccountController(IAppUserService appUserService, IValidator<AppUserCreateDto> appUserCreateValidator)
+        public AccountController(IAppUserService appUserService, IMapper mapper, IValidator<AppUserCreateModel> appUserCreateModelValidator)
         {
             _appUserService = appUserService;
-            _appUserCreateValidator = appUserCreateValidator;
+            _mapper = mapper;
+            _appUserCreateModelValidator = appUserCreateModelValidator;
         }
 
         public IActionResult Index()
@@ -32,29 +39,29 @@ namespace EvimiKur.UI.Controllers
         public IActionResult SignUp()
         {
 
-            List<SelectListItem> genderList = new List<SelectListItem>
+            var genders = new List<SelectListItem>
             {
               new SelectListItem { Value = Gender.Erkek.ToString(), Text = "Male" },
               new SelectListItem { Value = Gender.Kadın.ToString(), Text = "Female" },
-
             };
 
-
-            SelectList selectList = new SelectList(genderList, "Value", "Text");
-
-
-            return View(selectList);
+            ViewBag.Genders = genders;
+            return View();
 
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(AppUserCreateDto model)
+        public async Task<IActionResult> SignUp(AppUserCreateModel model)
         {
-            var result = _appUserCreateValidator.Validate(model);
+
+
+            var result = _appUserCreateModelValidator.Validate(model);
             if (result.IsValid)
             {
 
-                var createResponse = await _appUserService.CreateWithRoleAsync(model, (int)RoleType.Member);
+                var userDTO = _mapper.Map<AppUserCreateDto>(model);
+
+                var createResponse = await _appUserService.CreateWithRoleAsync(userDTO, (int)RoleType.Member);
                 return this.ResponseRedirectAction(createResponse, "SignIn");
 
             }
@@ -64,6 +71,7 @@ namespace EvimiKur.UI.Controllers
             }
 
             return View(model);
+
         }
 
 

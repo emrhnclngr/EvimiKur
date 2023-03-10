@@ -1,14 +1,10 @@
 ﻿using EvimiKur.Common.Enums;
-using EvimiKur.Dtos.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EvimiKur.Dtos
+namespace EvimiKur.UI.Models
 {
-    public class AppUserCreateDto : IDto
+    public class AppUserCreateModel
     {
         public string Firstname { get; set; }
         public string Surname { get; set; }

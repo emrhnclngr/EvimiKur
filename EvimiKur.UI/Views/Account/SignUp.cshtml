@@ -1,5 +1,5 @@
 ﻿@using EvimiKur.Common.Enums
-@model AppUserCreateDto
+@model AppUserCreateModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,14 +73,17 @@
                                         </div>
                                         <div class="col-12">
                                             <label for="surName" class="form-label">SurName</label>
-                                            <input asp-for="Surname" type="text"  class="form-control" id="yourName" required>
+                                            <input asp-for="Surname" type="text" class="form-control" id="yourName" required>
                                             <div class="invalid-feedback">Please, enter your name!</div>
                                         </div>
-                                        <div class="mb-3">
-                                            <select class="form-select" @*asp-items=""*@ asp-for="@Model.Gender">
-                                                <option value="0">
-                                                    Bir kategori seçiniz
-                                                </option>
+
+
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-control" id="gender" name="gender" required>
+                                                <option value="">Select Gender</option>
+                                                <option value="@Gender.Erkek">Male</option>
+                                                <option value="@Gender.Kadın">Female</option>
                                             </select>
                                         </div>
                                         <div class="col-12">
@@ -99,7 +102,7 @@
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"></span>
-                                                <input asp-for="Username" type="text"  class="form-control" id="yourUsername" required>
+                                                <input asp-for="Username" type="text" class="form-control" id="yourUsername" required>
                                                 <div class="invalid-feedback">Please choose a username.</div>
                                             </div>
                                         </div>
