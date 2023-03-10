@@ -17,6 +17,7 @@ namespace EvimiKur.Business.Helpers
                 new AppUserProfile(),
                 new ProductProfile(),
                 new CategoryProfile(),
+                new AppRoleProfile(),
             };
         }
     }

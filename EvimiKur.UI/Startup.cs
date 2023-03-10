@@ -5,6 +5,7 @@ using EvimiKur.UI.Mappings.AutoMapper;
 using EvimiKur.UI.Models;
 using EvimiKur.UI.ValidationRules;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,9 +37,24 @@ namespace EvimiKur.UI
 
             services.AddTransient<IValidator<ProductCreateModel>, ProductCreateModelValidator>();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+   .AddCookie(opt =>
+   {
+       opt.Cookie.Name = "EvimiKurCookie";
+       opt.Cookie.HttpOnly = true;
+       opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+       opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
+       opt.ExpireTimeSpan = TimeSpan.FromDays(20);
+       opt.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/LogIn");
+       opt.LogoutPath = new Microsoft.AspNetCore.Http.PathString("/Account/LogOut");
+       opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/AccessDenied");
+
+   });
+
             services.AddControllersWithViews();
 
             var profiles = ProfileHelper.GetProfiles();
+
             profiles.Add(new ProductCreateModelProfile());
 
             var configuration = new MapperConfiguration(opt =>
@@ -65,19 +81,27 @@ namespace EvimiKur.UI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "node_modules")),
-                RequestPath = "/node_modules"
+            //app.UseStaticFiles(new StaticFileOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "node_modules")),
+            //    RequestPath = "/node_modules"
 
-            });
+            //});
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{Area}/{Controller=Home}/{Action=Index}/{id?}"
+                    );
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
