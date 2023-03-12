@@ -51,6 +51,7 @@ namespace EvimiKur.DataAccess.Repositories
         {
             return await _context.Set<T>().Where(filter).AsNoTracking().ToListAsync();
         }
+        
 
         public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
@@ -71,6 +72,7 @@ namespace EvimiKur.DataAccess.Repositories
         {
             return !asNoTracking ? await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter) : await _context.Set<T>().SingleOrDefaultAsync(filter);
         }
+        
    
         public IQueryable<T> GetQuery()
         {

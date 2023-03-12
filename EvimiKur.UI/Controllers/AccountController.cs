@@ -16,6 +16,9 @@ using System.Linq;
 using EvimiKur.UI.Models;
 using AutoMapper;
 using EvimiKur.Common;
+using EvimiKur.Entities.Entities;
+using EvimiKur.DataAccess.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 
 namespace EvimiKur.UI.Controllers
 {
@@ -24,12 +27,14 @@ namespace EvimiKur.UI.Controllers
         private readonly IAppUserService _appUserService;
         private readonly IValidator<AppUserCreateModel> _appUserCreateModelValidator;
         private readonly IMapper _mapper;
+        private readonly IUow _uow;
 
-        public AccountController(IAppUserService appUserService, IMapper mapper, IValidator<AppUserCreateModel> appUserCreateModelValidator)
+        public AccountController(IAppUserService appUserService, IMapper mapper, IValidator<AppUserCreateModel> appUserCreateModelValidator, IUow uow)
         {
             _appUserService = appUserService;
             _mapper = mapper;
             _appUserCreateModelValidator = appUserCreateModelValidator;
+            _uow = uow;
         }
 
         public IActionResult Index()
@@ -72,8 +77,8 @@ namespace EvimiKur.UI.Controllers
 
             return View(model);
 
-        }
 
+        }
 
 
         public IActionResult LogIn()
@@ -88,7 +93,10 @@ namespace EvimiKur.UI.Controllers
             {
                 var roleResult = await _appUserService.GetRolesByUserIdAsync(result.Data.Id);
                 //İlgili kullanıcın rollerini çekmemiz.
-                var claims = new List<Claim>();
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name,dto.Username)
+                };
 
                 if (roleResult.ResponseType == Common.ResponseType.Success)
                 {
@@ -125,8 +133,9 @@ namespace EvimiKur.UI.Controllers
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(
-    CookieAuthenticationDefaults.AuthenticationScheme);
+           CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
+        
     }
 }

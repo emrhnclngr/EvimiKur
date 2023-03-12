@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,7 +52,16 @@
                                             if (User.Identity.IsAuthenticated)
                                             {
                                                 <ul>
-                                                    <li><a asp-action="LogOut" asp-controller="Account">LogOut</a></li>
+                                                    @if (User.IsInRole("Member"))
+                                                    {
+                                                        <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Member" asp-controller="Home" asp-action="Index">Welcome, @User.Identity.Name</a></span>
+                                                    }
+                                                    @if (User.IsInRole("Admin"))
+                                                    {
+                                                        <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Admin" asp-controller="Home" asp-action="Index">Welcome, @User.Identity.Name</a></span>
+                                                    }
+
+                                                    <li><a asp-action="LogOut" asp-controller="Account">Log Out</a></li>
                                                 </ul>
                                             }
                                             else

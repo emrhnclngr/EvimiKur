@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using EvimiKur.Dtos.Interfaces;
+using System.Data;
 
 namespace EvimiKur.Bussiness.Services
 {
@@ -87,5 +90,15 @@ namespace EvimiKur.Bussiness.Services
 
             return new Response<List<AppRoleListDto>>(ResponseType.Success, dto);
         }
+        public async Task<IResponse<List<AppUserLoginDto>>> GeyByLoginUserId(int id)
+        {
+            var query = await _uow.GetRepository<AppUser>().FindAsync(id);
+
+            var dto = _mapper.Map<List<AppUserLoginDto>>(query);
+
+            return new Response<List<AppUserLoginDto>>(ResponseType.Success, dto);
+        }
+        
+
     }
 }
