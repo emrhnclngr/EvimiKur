@@ -25,6 +25,9 @@ namespace EvimiKur.Entities.Entities
         public Category Category { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
 
+        public int ProductStatusId { get; set; }
+        public ProductStatus ProductStatus { get; set; }
+
         //public int ProductReturnId { get; set; }
         //public ProductReturn ProductReturn { get; set; }
 

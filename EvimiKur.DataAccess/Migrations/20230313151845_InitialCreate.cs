@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EvimiKur.DataAccess.Migrations
 {
-    public partial class SixCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,6 +68,23 @@ namespace EvimiKur.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Definition = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Suppliers",
                 columns: table => new
                 {
@@ -124,36 +141,6 @@ namespace EvimiKur.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    QuantityPerUnit = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UnitPrice = table.Column<int>(type: "int", nullable: false),
-                    UnitInStock = table.Column<int>(type: "int", nullable: false),
-                    UnitsInOrder = table.Column<int>(type: "int", nullable: false),
-                    Discontinued = table.Column<bool>(type: "bit", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SubCategories",
                 columns: table => new
                 {
@@ -174,6 +161,43 @@ namespace EvimiKur.DataAccess.Migrations
                         name: "FK_SubCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    QuantityPerUnit = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UnitPrice = table.Column<int>(type: "int", nullable: false),
+                    UnitInStock = table.Column<int>(type: "int", nullable: false),
+                    UnitsInOrder = table.Column<int>(type: "int", nullable: false),
+                    Discontinued = table.Column<bool>(type: "bit", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ProductStatusId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductStatus_ProductStatusId",
+                        column: x => x.ProductStatusId,
+                        principalTable: "ProductStatus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -281,12 +305,12 @@ namespace EvimiKur.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 1, new DateTime(2023, 3, 2, 16, 39, 50, 998, DateTimeKind.Local).AddTicks(4070), "Admin", null, false, null });
+                values: new object[] { 1, new DateTime(2023, 3, 13, 18, 18, 44, 946, DateTimeKind.Local).AddTicks(5084), "Admin", null, false, null });
 
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 2, new DateTime(2023, 3, 2, 16, 39, 50, 999, DateTimeKind.Local).AddTicks(1898), "Member", null, false, null });
+                values: new object[] { 2, new DateTime(2023, 3, 13, 18, 18, 44, 947, DateTimeKind.Local).AddTicks(2583), "Member", null, false, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppUserRoles_AppRoleId_AppUserId",
@@ -330,6 +354,11 @@ namespace EvimiKur.DataAccess.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductStatusId",
+                table: "Products",
+                column: "ProductStatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SubCategories_CategoryId",
                 table: "SubCategories",
                 column: "CategoryId");
@@ -360,6 +389,9 @@ namespace EvimiKur.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "ProductStatus");
 
             migrationBuilder.DropTable(
                 name: "AppUsers");

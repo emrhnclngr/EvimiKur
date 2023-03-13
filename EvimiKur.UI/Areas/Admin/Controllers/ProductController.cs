@@ -16,9 +16,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Udemy.AdvertisementApp.UI.Extensions;
 using Microsoft.AspNetCore.Authorization;
+using EvimiKur.Common.Enums;
 
 namespace EvimiKur.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -58,14 +60,14 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
 
             var dto = _mapper.Map<ProductCreateDto>(model);
             var response = await _productService.CreateAsync(dto);
-            return this.ResponseRedirectAction(response, "List");
+            return this.ResponseRedirectAction(response, "List","Product");
 
         }
-        
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> List()
         {
             //var products = await _productService.GetCategoryWithProduct();
-            var products = await _productService.GetList();
+            var products = await _productService.GetList(StatusType.Active);
             return View(products);
 
             //var response = await _productService.GetAllAsync();

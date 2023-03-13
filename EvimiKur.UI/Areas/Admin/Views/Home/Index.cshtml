@@ -286,7 +286,7 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/Product/List">
+                        <a asp-action="List" asp-controller="Product">
                             <i class="bi bi-circle"></i><span>Active Products</span>
                         </a>
                     </li>
@@ -296,7 +296,7 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-controller="Product" asp-action="Create">
+                        <a asp-action="Create" asp-controller="Product">
                             <i class="bi bi-circle"></i><span>Add Products</span>
                         </a>
                     </li>

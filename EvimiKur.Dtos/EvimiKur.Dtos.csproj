@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EvimiKur.Common\EvimiKur.Common.csproj" />
+    <ProjectReference Include="..\EvimiKur.Entities\EvimiKur.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -100,7 +100,7 @@ namespace EvimiKur.UI
             {
                 endpoints.MapControllerRoute(
                     name: "areas",
-                    pattern: "{Area}/{Controller=Home}/{Action=Index}/{id?}"
+                    pattern: "{area:exists}/{Controller=Home}/{Action=Index}/{id?}"
                     );
 
 

@@ -1,13 +1,14 @@
 ﻿@model List<ProductListDto>
 @{
     ViewData["Title"] = "List";
+    Layout = "_Layout";
 }
 
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Category List</h4>
+                <h4 class="card-title">Product List</h4>
             </div>
             <div class="card-body">
                 <div class="table table-responsive table-responsive-sm">
@@ -35,7 +36,7 @@
                                     <td>@item.Id</td>
                                     <td>@item.ProductName</td>
                                     <td>@item.UnitPrice</td>
-                                    <td>@item.Status</td>
+                                    <td>@item.ProductStatus.Definition</td>
                                     <td>@item.Discontinued</td>
                                     <td>@item.Category.Name</td>
                                     <td>@item.QuantityPerUnit</td>
@@ -60,4 +61,3 @@
         </div>
     </div>
 </div>
-

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EvimiKur.DataAccess.Migrations
 {
     [DbContext(typeof(EvimiKurContext))]
-    [Migration("20230302133951_SixCreate")]
-    partial class SixCreate
+    [Migration("20230313151845_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,14 +53,14 @@ namespace EvimiKur.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 3, 2, 16, 39, 50, 998, DateTimeKind.Local).AddTicks(4070),
+                            CreatedDate = new DateTime(2023, 3, 13, 18, 18, 44, 946, DateTimeKind.Local).AddTicks(5084),
                             Definition = "Admin",
                             Status = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 3, 2, 16, 39, 50, 999, DateTimeKind.Local).AddTicks(1898),
+                            CreatedDate = new DateTime(2023, 3, 13, 18, 18, 44, 947, DateTimeKind.Local).AddTicks(2583),
                             Definition = "Member",
                             Status = false
                         });
@@ -338,6 +338,9 @@ namespace EvimiKur.DataAccess.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int>("ProductStatusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("QuantityPerUnit")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -360,6 +363,8 @@ namespace EvimiKur.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProductStatusId");
 
                     b.ToTable("Products");
                 });
@@ -400,6 +405,33 @@ namespace EvimiKur.DataAccess.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("ProductReturns");
+                });
+
+            modelBuilder.Entity("EvimiKur.Entities.Entities.ProductStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Definition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductStatus");
                 });
 
             modelBuilder.Entity("EvimiKur.Entities.Entities.SubCategory", b =>
@@ -569,7 +601,15 @@ namespace EvimiKur.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("EvimiKur.Entities.Entities.ProductStatus", "ProductStatus")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("ProductStatus");
                 });
 
             modelBuilder.Entity("EvimiKur.Entities.Entities.ProductReturn", b =>
@@ -623,6 +663,11 @@ namespace EvimiKur.DataAccess.Migrations
             modelBuilder.Entity("EvimiKur.Entities.Entities.Product", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("EvimiKur.Entities.Entities.ProductStatus", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("EvimiKur.Entities.Entities.Supplier", b =>

@@ -1,4 +1,5 @@
 ﻿using EvimiKur.Common;
+using EvimiKur.Common.Enums;
 using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
 using Microsoft.EntityFrameworkCore.Query;
@@ -15,7 +16,7 @@ namespace EvimiKur.Bussiness.Interfaces
     {
         Task<IResponse<List<ProductListDto>>> GetActivesAsync();
         //Task<IResponse<List<ProductListDto>>> GetCategoryWithProduct();
-        Task<List<ProductListDto>> GetList();
+        Task<List<ProductListDto>> GetList(StatusType type);
 
 
     }

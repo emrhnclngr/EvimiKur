@@ -1,5 +1,6 @@
 ﻿using EvimiKur.Dtos;
 using EvimiKur.Dtos.Interfaces;
+using EvimiKur.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace EvimiKur.Dtos
         public int UnitsInOrder { get; set; }
         public bool Discontinued { get; set; }
         public string ImagePath { get; set; }
+        public ProductStatus ProductStatus { get; set; }
         public CategoryListDto Category { get; set; }
 
     }

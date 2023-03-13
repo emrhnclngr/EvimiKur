@@ -41,11 +41,11 @@ namespace EvimiKur.Bussiness.Services
         }
 
        
-        public async Task<List<ProductListDto>> GetList()
+        public async Task<List<ProductListDto>> GetList(StatusType type)
         {
             var query = _uow.GetRepository<Product>().GetQuery();
 
-            var list = await query.Include(x => x.Category).ToListAsync(); ;
+            var list = await query.Include(x => x.Category).Include(x =>x.ProductStatus).Where(x => x.ProductStatusId == (int)type).ToListAsync(); 
 
             return _mapper.Map<List<ProductListDto>>(list);
         }

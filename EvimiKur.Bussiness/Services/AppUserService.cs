@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EvimiKur.Dtos.Interfaces;
 using System.Data;
+using EvimiKur.Common.Enums;
 
 namespace EvimiKur.Bussiness.Services
 {
@@ -98,8 +99,16 @@ namespace EvimiKur.Bussiness.Services
 
             return new Response<List<AppUserLoginDto>>(ResponseType.Success, dto);
         }
-       
-        
+        //public async Task<List<AppUserListDto>> GetList(RoleType type)
+        //{
+        //    var query = _uow.GetRepository<AppUser>().GetQuery();
+
+        //    var list = await query.Include(x => x.AppUserRoles).Where(x => x.Id == (int)type).ToListAsync(); ;
+
+        //    return _mapper.Map<List<AppUserListDto>>(list);
+        //}
+
+
 
     }
 }
