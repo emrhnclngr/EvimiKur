@@ -98,6 +98,7 @@ namespace EvimiKur.Bussiness.Services
 
             return new Response<List<AppUserLoginDto>>(ResponseType.Success, dto);
         }
+       
         
 
     }

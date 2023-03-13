@@ -54,7 +54,7 @@
                                                 <ul>
                                                     @if (User.IsInRole("Member"))
                                                     {
-                                                        <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Member" asp-controller="Home" asp-action="Index">Welcome, @User.Identity.Name</a></span>
+                                                        <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Member" asp-controller="Home" asp-action="Index" asp-route-id="">Welcome, @User.Identity.Name</a></span>
                                                     }
                                                     @if (User.IsInRole("Admin"))
                                                     {

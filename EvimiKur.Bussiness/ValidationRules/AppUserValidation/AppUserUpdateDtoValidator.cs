@@ -14,7 +14,6 @@ namespace EvimiKur.Bussiness.ValidationRules.AppUserValidation
         {
             RuleFor(x => x.Id).NotEmpty();
             RuleFor(x => x.Firstname).NotEmpty();
-            RuleFor(x => x.Gender).NotEmpty();
             RuleFor(x => x.Password).NotEmpty();
             RuleFor(x => x.PhoneNumber).NotEmpty();
             RuleFor(x => x.Surname).NotEmpty();

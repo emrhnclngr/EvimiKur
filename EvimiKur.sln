@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvimiKur.UI", "EvimiKur.UI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvimiKur.Bussiness", "EvimiKur.Bussiness\EvimiKur.Bussiness.csproj", "{40C56011-886D-400A-AC49-A0BC9380B61D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvimiKur.Common", "EvimiKur.Common\EvimiKur.Common.csproj", "{6A809256-4927-462C-AE54-57E1FD8EECB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvimiKur.Common", "EvimiKur.Common\EvimiKur.Common.csproj", "{6A809256-4927-462C-AE54-57E1FD8EECB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvimiKur.Dtos", "EvimiKur.Dtos\EvimiKur.Dtos.csproj", "{9A0CF1A6-E599-4CE6-A161-924BCC6D79BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvimiKur.Dtos", "EvimiKur.Dtos\EvimiKur.Dtos.csproj", "{9A0CF1A6-E599-4CE6-A161-924BCC6D79BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

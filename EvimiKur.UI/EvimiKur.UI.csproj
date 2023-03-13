@@ -35,6 +35,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -337,6 +338,10 @@
     <TypeScriptCompile Include="wwwroot\css\assets\vendor\chart.js\types\types\utils.d.ts" />
     <TypeScriptCompile Include="wwwroot\css\assets\vendor\chart.js\types\utils.d.ts" />
     <TypeScriptCompile Include="wwwroot\css\assets\vendor\tinymce\tinymce.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\media\appuser\" />
   </ItemGroup>
 
 </Project>

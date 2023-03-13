@@ -15,8 +15,9 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Udemy.AdvertisementApp.UI.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
-namespace EvimiKur.UI.Controllers
+namespace EvimiKur.UI.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
@@ -60,12 +61,13 @@ namespace EvimiKur.UI.Controllers
             return this.ResponseRedirectAction(response, "List");
 
         }
+        
         public async Task<IActionResult> List()
         {
             //var products = await _productService.GetCategoryWithProduct();
             var products = await _productService.GetList();
             return View(products);
-            
+
             //var response = await _productService.GetAllAsync();
             //return this.ResponseView(response);
         }

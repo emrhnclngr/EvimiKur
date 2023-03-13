@@ -16,5 +16,6 @@ namespace EvimiKur.Bussiness.Interfaces
         Task<IResponse<AppUserListDto>> CheckUserAsync(AppUserLoginDto dto);
         Task<IResponse<List<AppRoleListDto>>> GetRolesByUserIdAsync(int userId);
         Task<IResponse<List<AppUserLoginDto>>> GeyByLoginUserId(int id);
+       
     }
 }

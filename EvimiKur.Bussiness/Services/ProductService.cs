@@ -40,25 +40,7 @@ namespace EvimiKur.Bussiness.Services
             return new Response<List<ProductListDto>>(ResponseType.Success, dto);
         }
 
-        //public async Task<IResponse<List<ProductListDto>>> GetCategoryWithProduct()
-        //{
-        //    var products = await _uow.GetRepository<Product>().GetFilteredList(
-        //        select: x => new ProductListDto
-        //        {
-        //            Id = x.Id,
-        //            ProductName = x.ProductName,
-        //            QuantityPerUnit = x.QuantityPerUnit,
-        //            UnitPrice = x.UnitPrice,
-        //            UnitInStock = x.UnitInStock,
-        //            Status = x.Status,
-        //            UnitsInOrder = x.UnitsInOrder,
-        //            Discontinued = x.Discontinued,
-        //            ImagePath = x.ImagePath,
-        //            Category = x.Category.Name,
-        //        },
-        //        join: x => x.Include(z => z.Category));
-        //    return new Response<List<ProductListDto>>(ResponseType.Success, products);
-        //}
+       
         public async Task<List<ProductListDto>> GetList()
         {
             var query = _uow.GetRepository<Product>().GetQuery();
