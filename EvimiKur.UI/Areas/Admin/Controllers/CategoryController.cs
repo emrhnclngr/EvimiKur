@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 using Udemy.AdvertisementApp.UI.Extensions;
 
-namespace EvimiKur.UI.Controllers
+namespace EvimiKur.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUow _uow;
@@ -38,16 +39,23 @@ namespace EvimiKur.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CategoryCreateDto dto)
         {
-            
+
             var response = await _categoryService.CreateAsync(dto);
             return this.ResponseRedirectAction(response, "List");
         }
 
         public async Task<IActionResult> List()
         {
-            
-            var response = await _categoryService.GetAllAsync();
-            return this.ResponseView(response);
+
+            //var response = await _categoryService.GetAllAsync();
+            var response = await _categoryService.GetListActiveCategory();
+            return View(response);
+            //return this.ResponseView(response);
+        }
+        public async Task<IActionResult> PassiveCategoryList()
+        {
+            var response = await _categoryService.GetListInActiveCategory();
+            return View(response);
         }
         public async Task<IActionResult> Remove(int id)
         {

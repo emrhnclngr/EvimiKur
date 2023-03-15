@@ -17,7 +17,8 @@ namespace EvimiKur.UI.Models
         public bool Discontinued { get; set; }
         public string ImagePath { get; set; }
         public int CategoryId { get; set; }
-        public ProductStatus ProductStatus { get; set; }
+        public int ProductStatusId { get; set; }
+        public SelectList ProductStatus { get; set; }
         public SelectList Category { get; set; }
     }
 }

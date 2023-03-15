@@ -11,6 +11,7 @@ namespace EvimiKur.Bussiness.Interfaces
 {
     public interface ICategoryService : IService<CategoryCreateDto, CategoryUpdateDto, CategoryListDto,Category>
     {
-        
+        Task<List<CategoryListDto>> GetListActiveCategory();
+        Task<List<CategoryListDto>> GetListInActiveCategory();
     }
 }

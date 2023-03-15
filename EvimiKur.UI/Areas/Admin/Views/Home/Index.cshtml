@@ -225,7 +225,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="/Member/Home/Index">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
@@ -286,12 +286,12 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a asp-action="List" asp-controller="Product">
+                        <a asp-controller="Product" asp-action="List">
                             <i class="bi bi-circle"></i><span>Active Products</span>
                         </a>
                     </li>
                     <li>
-                        <a href="components-accordion.html">
+                        <a asp-controller="Product" asp-action="PassiveProductList">
                             <i class="bi bi-circle"></i><span>Passive Products</span>
                         </a>
                     </li>
@@ -311,17 +311,17 @@
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="forms-elements.html">
+                        <a asp-controller="Category" asp-action="List">
                             <i class="bi bi-circle"></i><span>Active Categories</span>
                         </a>
                     </li>
                     <li>
-                        <a href="forms-layouts.html">
+                        <a asp-controller="Category" asp-action="PassiveCategoryList">
                             <i class="bi bi-circle"></i><span>Passive Categories</span>
                         </a>
                     </li>
                     <li>
-                        <a href="forms-editors.html">
+                        <a asp-controller="Category" asp-action="Create">
                             <i class="bi bi-circle"></i><span>Add Categories</span>
                         </a>
                     </li>
@@ -334,7 +334,7 @@
                 </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="tables-general.html">
+                        <a asp-controller="Dealers" asp-action="List">
                             <i class="bi bi-circle"></i><span>Stock Status</span>
                         </a>
                     </li>

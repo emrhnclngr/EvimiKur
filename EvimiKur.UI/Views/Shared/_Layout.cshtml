@@ -58,7 +58,9 @@
                                                     }
                                                     @if (User.IsInRole("Admin"))
                                                     {
-                                                        <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Admin" asp-controller="Home" asp-action="Index">Welcome, @User.Identity.Name</a></span>
+
+                                                        
+                                                        //<span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Admin" asp-controller="Home" asp-action="Index">Welcome, @User.Identity.Name</a></span>
                                                     }
 
                                                     <li><a asp-action="LogOut" asp-controller="Account">Log Out</a></li>

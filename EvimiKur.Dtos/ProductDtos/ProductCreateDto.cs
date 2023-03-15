@@ -1,5 +1,6 @@
 ﻿using EvimiKur.Dtos;
 using EvimiKur.Dtos.Interfaces;
+using EvimiKur.Dtos.ProductStatusDto;
 using EvimiKur.Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,8 @@ namespace EvimiKur.Dtos
         public bool Discontinued { get; set; }
         public string ImagePath { get; set; }
         public int CategoryId { get; set; }
-        public ProductStatus ProductStatus { get; set; }
+        public int ProductStatusId { get; set; }
+        public ProductStatusListDto ProductStatus { get; set; }
         public CategoryListDto Category { get; set; }
 
 

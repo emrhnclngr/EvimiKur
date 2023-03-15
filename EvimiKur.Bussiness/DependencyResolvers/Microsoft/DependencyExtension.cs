@@ -2,10 +2,12 @@
 using EvimiKur.Bussiness.Services;
 using EvimiKur.Bussiness.ValidationRules.AppUserValidation;
 using EvimiKur.Bussiness.ValidationRules.CategoryValidation;
+using EvimiKur.Bussiness.ValidationRules.ProductStatusValidation;
 using EvimiKur.Bussiness.ValidationRules.ProductValidation;
 using EvimiKur.DataAccess.Context;
 using EvimiKur.DataAccess.UnitOfWork;
 using EvimiKur.Dtos;
+using EvimiKur.Dtos.ProductStatusDto;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -37,11 +39,14 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddTransient<IValidator<CategoryUpdateDto>, CategoryUpdateDtoValidator>();
             services.AddTransient<IValidator<ProductCreateDto>, ProductCreateDtoValidator>();
             services.AddTransient<IValidator<ProductUpdateDto>, ProductUpdateDtoValidator>();
-            
+            services.AddTransient<IValidator<ProductStatusCreateDto>, ProductStatusCreateDtoValidator>();
+            services.AddTransient<IValidator<ProductStatusUpdateDto>, ProductStatusUpdateDtoValidator>();
+
 
             services.AddScoped<IAppUserService, AppUserService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductStatusService, ProductStatusService>();
 
 
 

@@ -214,6 +214,7 @@
     <None Include="wwwroot\css\assets\vendor\tinymce\themes\silver\theme.min.js" />
     <None Include="wwwroot\css\assets\vendor\tinymce\tinymce.js" />
     <None Include="wwwroot\css\assets\vendor\tinymce\tinymce.min.js" />
+    <None Include="wwwroot\css\create\js\scripts.js" />
     <None Include="wwwroot\js\datatables-simple-demo.js" />
     <None Include="wwwroot\js\scripts.js" />
     <None Include="wwwroot\themes\chamb\fonts\fontawesome-webfont.svg" />

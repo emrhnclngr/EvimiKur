@@ -1,8 +1,9 @@
-﻿@model List<ProductListDto>
+﻿@model List<CategoryListDto>
 @{
     ViewData["Title"] = "List";
     //Layout = "_Layout";
 }
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
@@ -25,11 +26,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="~/css/create/js/scripts.js"></script>
+
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Product List</h4>
+                <h4 class="card-title">Category List</h4>
             </div>
             <div class="card-body">
                 <div class="table table-responsive table-responsive-sm">
@@ -38,14 +40,8 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>UnitPrice</th>
+                                <th>Description</th>
                                 <th>Status</th>
-                                <th>Discontinued</th>
-                                <th>Category</th>
-                                <th>QuantityPerUnit</th>
-                                <th>UnitInStock</th>
-                                <th>UnitsInOrder</th>
-                                <th>ImagePath</th>
                                 <th>Edit</th>
                                 <th>Remove</th>
                             </tr>
@@ -55,20 +51,14 @@
                             {
                                 <tr>
                                     <td>@item.Id</td>
-                                    <td>@item.ProductName</td>
-                                    <td>@item.UnitPrice</td>
-                                    <td>@item.ProductStatus.Definition</td>
-                                    <td>@item.Discontinued</td>
-                                    <td>@item.Category.Name</td>
-                                    <td>@item.QuantityPerUnit</td>
-                                    <td>@item.UnitInStock</td>
-                                    <td>@item.UnitsInOrder</td>
-                                    <td>@item.ImagePath</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Status</td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
                                     </td>
                                     <td>
-                                        <a asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
+                                        <a asp-controller="Category" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
                                     </td>
                                 </tr>
                             }
@@ -77,9 +67,10 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a asp-controller="Product" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Product</a>
+                <a asp-controller="Category" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Category</a>
                 <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
             </div>
         </div>
     </div>
 </div>
+

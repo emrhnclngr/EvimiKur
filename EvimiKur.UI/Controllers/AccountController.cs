@@ -123,9 +123,24 @@ namespace EvimiKur.UI.Controllers
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
+               
+                bool rol = roleResult.Data.Any(x => x.Definition.Contains("Admin"));
+                bool claimsRol = claimsIdentity.Claims.Any(x => x.Value.Contains("1"));
                 
 
-                return RedirectToAction("Index", "Home");
+                if (rol == true || claimsRol == true)
+                {
+
+
+
+
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
             ModelState.AddModelError("Kullanıcı adı veya şifre hatalı", result.Message);

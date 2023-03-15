@@ -1,7 +1,105 @@
 ﻿@model ProductCreateModel
-@{
+@*@{
     Layout = "_Layout";
-}
+}*@
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>One Page Wonder - Start Bootstrap Template</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="~/css/create/css/styles.css" rel="stylesheet" />
+
+
+
+
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="~/css/create/js/scripts.js"></script>
+
+
+@*<div class ="container-fluid">
+   
+            <div class="card-header">
+                <h5 class="card-title">Create Product</h5>
+            </div>
+            <form asp-action="Create" >
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="ProductName">ProductName</label>
+                        <input asp-for="ProductName" class="form-control" placeholder="Product Name" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductStatusId" class="control-label">Choose The Status</label>
+                        <select asp-for="ProductStatusId" asp-items="@Model.ProductStatus" class="form-control">
+                            <option value="0">Choose Status</option>
+                        </select>
+                        <span asp-validation-for="ProductStatus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UnitPrice">Unit Price</label>
+                        <input asp-for="UnitPrice" class="form-control" placeholder="Product Unit Price" />
+                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="QuantityPerUnit">QuantityPerUnit</label>
+                        <input asp-for="QuantityPerUnit" class="form-control" placeholder="Product Quantity Per Unit" />
+                        <span asp-validation-for="QuantityPerUnit" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UnitInStock">UnitInStock</label>
+                        <input asp-for="UnitInStock" class="form-control" placeholder="Product UnitInStock" />
+                        <span asp-validation-for="UnitInStock" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Discontinued">Discontinued</label>
+                        <input asp-for="Discontinued" class="form-control" placeholder="Product Discontinued" />
+                        <span asp-validation-for="Discontinued" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label">Choose The Category</label>
+                        <select asp-for="CategoryId" asp-items="@Model.Category" class="form-control">
+                            <option value="0">Choose Category</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImagePath" class="control-label">Choose The Picture</label>
+                        <input asp-for="ImagePath" class="form-control" />
+                        <span asp-validation-for="ImagePath" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <input type="submit" value="Create Product" class="btn btn-outline-success btn-sm float-right" />
+                        <a asp-action="List" class="btn btn-outline-info btn-sm float-left">Back To List</a>
+                    </div>
+                </div>
+            </form>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="container-fluid">
@@ -10,9 +108,16 @@
             <label>İlanın Başlığı:</label>
             <input type="text" class="form-control" asp-for="@Model.ProductName" />
         </div>
-        <div class="mb-3">
+        @*<div class="mb-3">
             <label class="form-check-label">Aktif</label>
             <input type="checkbox" asp-for="@Model.Status" class="form-check-input" />
+        </div>*@
+        <div class="form-group">
+            <select class="form-select" asp-items="@Model.ProductStatus" asp-for="@Model.ProductStatusId">
+                <option value="0">
+                    Select Status
+                </option>
+            </select>
         </div>
         <div class="mb-3">
             <label>Birim başına miktar</label>
@@ -43,7 +148,10 @@
         </div>
 
         <div class="mb-3">
-            <button class="btn btn-primary">Kaydet</button>
+            <button class="btn btn-primary">Save</button>
+            <button asp-controller="Home" asp-action="Index" class="btn btn-primary">Back To List</button>
+        </div>
+        <div asp-validation-summary="All" class="text-danger text-center">
         </div>
     </form>
 </div>
