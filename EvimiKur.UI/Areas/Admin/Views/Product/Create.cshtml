@@ -103,46 +103,48 @@
 
 
 <div class="container-fluid">
-    <form asp-action="Create" asp-controller="Product" method="post">
+    <form asp-action="Create" asp-controller="Product" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label>İlanın Başlığı:</label>
-            <input type="text" class="form-control" asp-for="@Model.ProductName" />
+            <input type="text" class="form-control" asp-for="@Model.ProductName" placeholder="Product Name" />
         </div>
-        @*<div class="mb-3">
+        <div class="mb-3">
             <label class="form-check-label">Aktif</label>
-            <input type="checkbox" asp-for="@Model.Status" class="form-check-input" />
-        </div>*@
-        <div class="form-group">
-            <select class="form-select" asp-items="@Model.ProductStatus" asp-for="@Model.ProductStatusId">
-                <option value="0">
-                    Select Status
-                </option>
-            </select>
+            <input type="checkbox" asp-for="@Model.Status" class="form-check-input"  />
         </div>
         <div class="mb-3">
             <label>Birim başına miktar</label>
-            <textarea asp-for="@Model.QuantityPerUnit" class="form-control"></textarea>
+            <textarea asp-for="@Model.QuantityPerUnit" class="form-control" placeholder="Quantity Per Unit"></textarea>
         </div>
         <div class="mb-3">
             <label>Birim Fiyat</label>
-            <textarea asp-for="@Model.UnitPrice" class="form-control"></textarea>
+            <textarea asp-for="@Model.UnitPrice" class="form-control" placeholder="Unit Price"></textarea>
         </div>
         <div class="mb-3">
             <label>Stok</label>
-            <textarea asp-for="@Model.UnitInStock" class="form-control"></textarea>
+            <textarea asp-for="@Model.UnitInStock" class="form-control" placeholder="Unit In Stock"></textarea>
         </div>
         <div class="mb-3">
-            <label>İndirim</label>
-            <textarea asp-for="@Model.Discontinued" class="form-control"></textarea>
+            <label class="form-check-label">İndirim</label>
+            <input type="checkbox" asp-for="@Model.Discontinued" class="form-check-input" />
         </div>
-        <div class="mb-3">
-            <label>Resim</label>
-            <textarea asp-for="@Model.ImagePath" class="form-control"></textarea>
+
+        <div class="form-group mb-3">
+            <label asp-for="@Model.UploadImage" class="control-label">Choose The Image</label>
+            <input asp-for="@Model.UploadImage" class="form-control" type="file" name="UploadImage" placeholder="Choose The Image" />
+            <span asp-validation-for="@Model.UploadImage" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <select class="form-select" asp-items="@Model.Category" asp-for="@Model.CategoryId">
                 <option value="0">
-                    Bir kategori seçiniz
+                    Choose A Category
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" asp-items="@Model.Dealer" asp-for="@Model.DealerId">
+                <option value="0">
+                    Choose A Dealer
                 </option>
             </select>
         </div>

@@ -128,7 +128,7 @@ namespace EvimiKur.UI.Controllers
                 bool claimsRol = claimsIdentity.Claims.Any(x => x.Value.Contains("1"));
                 
 
-                if (rol == true || claimsRol == true)
+                if (rol == true /*|| claimsRol == true*/)
                 {
 
 

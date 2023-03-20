@@ -33,11 +33,11 @@
     <form asp-action="Create" asp-controller="Category" method="post">
         <div class="mb-3">
             <label> Kategori Adı:</label>
-            <input type="text" class="form-control" asp-for="@Model.Name" />
+            <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Category Name" />
         </div>
         <div class="mb-3">
             <label>Kategori Açıklaması:</label>
-            <input type="text" class="form-control" asp-for="@Model.Description" />
+            <input type="text" class="form-control" asp-for="@Model.Description" placeholder="Description" />
         </div>
         <div class="mb-3">
             <label class="form-check-label">Aktif</label>

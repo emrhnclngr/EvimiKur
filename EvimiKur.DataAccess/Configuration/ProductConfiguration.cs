@@ -18,14 +18,12 @@ namespace EvimiKur.DataAccess.Configuration
             builder.Property(x => x.UnitPrice).IsRequired();
             builder.Property(x => x.UnitInStock).IsRequired();
             builder.Property(x => x.Discontinued).IsRequired();
-            builder.Property(x => x.ImagePath).IsRequired();
+           
 
 
 
             builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
-            builder.HasOne(x => x.ProductStatus).WithMany(x => x.Products).HasForeignKey(x => x.ProductStatusId);
-
-
+            builder.HasOne(x => x.Dealer).WithMany(x => x.Products).HasForeignKey(x => x.DealerId);
         }
     }
 }

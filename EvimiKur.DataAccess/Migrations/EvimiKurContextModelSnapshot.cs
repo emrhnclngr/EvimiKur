@@ -51,14 +51,14 @@ namespace EvimiKur.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 3, 13, 20, 30, 46, 19, DateTimeKind.Local).AddTicks(8280),
+                            CreatedDate = new DateTime(2023, 3, 19, 17, 38, 57, 639, DateTimeKind.Local).AddTicks(269),
                             Definition = "Admin",
                             Status = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 3, 13, 20, 30, 46, 20, DateTimeKind.Local).AddTicks(6915),
+                            CreatedDate = new DateTime(2023, 3, 19, 17, 38, 57, 639, DateTimeKind.Local).AddTicks(9572),
                             Definition = "Member",
                             Status = false
                         });
@@ -193,6 +193,53 @@ namespace EvimiKur.DataAccess.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("EvimiKur.Entities.Entities.Dealer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Responsible")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Dealers");
+                });
+
             modelBuilder.Entity("EvimiKur.Entities.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -321,23 +368,22 @@ namespace EvimiKur.DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DealerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Discontinued")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
-
-                    b.Property<int>("ProductStatusId")
-                        .HasColumnType("int");
 
                     b.Property<string>("QuantityPerUnit")
                         .IsRequired()
@@ -362,7 +408,7 @@ namespace EvimiKur.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("ProductStatusId");
+                    b.HasIndex("DealerId");
 
                     b.ToTable("Products");
                 });
@@ -403,33 +449,6 @@ namespace EvimiKur.DataAccess.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("ProductReturns");
-                });
-
-            modelBuilder.Entity("EvimiKur.Entities.Entities.ProductStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Definition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductStatus");
                 });
 
             modelBuilder.Entity("EvimiKur.Entities.Entities.SubCategory", b =>
@@ -599,15 +618,15 @@ namespace EvimiKur.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EvimiKur.Entities.Entities.ProductStatus", "ProductStatus")
+                    b.HasOne("EvimiKur.Entities.Entities.Dealer", "Dealer")
                         .WithMany("Products")
-                        .HasForeignKey("ProductStatusId")
+                        .HasForeignKey("DealerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
 
-                    b.Navigation("ProductStatus");
+                    b.Navigation("Dealer");
                 });
 
             modelBuilder.Entity("EvimiKur.Entities.Entities.ProductReturn", b =>
@@ -651,6 +670,11 @@ namespace EvimiKur.DataAccess.Migrations
                     b.Navigation("SubCategories");
                 });
 
+            modelBuilder.Entity("EvimiKur.Entities.Entities.Dealer", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("EvimiKur.Entities.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
@@ -661,11 +685,6 @@ namespace EvimiKur.DataAccess.Migrations
             modelBuilder.Entity("EvimiKur.Entities.Entities.Product", b =>
                 {
                     b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("EvimiKur.Entities.Entities.ProductStatus", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("EvimiKur.Entities.Entities.Supplier", b =>

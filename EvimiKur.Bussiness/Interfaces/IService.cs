@@ -24,6 +24,8 @@ namespace EvimiKur.Bussiness.Interfaces
         Task<IResponse> RemoveAsync(int id);
         Task<IResponse<IDto>> GetByIdAsync<IDto>(int id);
         Task<IResponse<List<ListDto>>> GetAllAsync();
-      
+       
+
+
     }
 }

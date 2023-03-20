@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +39,8 @@ namespace EvimiKur.UI
 
             services.AddTransient<IValidator<ProductCreateModel>, ProductCreateModelValidator>();
             services.AddTransient<IValidator<AppUserCreateModel>, AppUserCreateModelValidator>();
+            
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
    .AddCookie(opt =>
@@ -52,6 +55,8 @@ namespace EvimiKur.UI
        opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/AccessDenied");
 
    });
+           
+
 
             services.AddControllersWithViews();
 
@@ -59,6 +64,8 @@ namespace EvimiKur.UI
 
             profiles.Add(new ProductCreateModelProfile());
             profiles.Add(new AppUserCreateModelProfile());
+            
+            
 
             var configuration = new MapperConfiguration(opt =>
             {

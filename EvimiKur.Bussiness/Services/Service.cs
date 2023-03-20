@@ -7,6 +7,7 @@ using EvimiKur.Dtos.Interfaces;
 using EvimiKur.Entities.Base;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,7 @@ namespace EvimiKur.Bussiness.Services
             return new Response<List<ListDto>>(ResponseType.Success, dto);
 
         }
+        
 
         public async Task<IResponse<IDto>> GetByIdAsync<IDto>(int id)
         {
@@ -65,6 +67,7 @@ namespace EvimiKur.Bussiness.Services
             var dto = _mapper.Map<IDto>(data);
             return new Response<IDto>(ResponseType.Success, dto);
         }
+       
 
         public async Task<IResponse> RemoveAsync(int id)
         {

@@ -1,6 +1,7 @@
 ﻿using EvimiKur.Dtos;
 using EvimiKur.Dtos.Interfaces;
 using EvimiKur.Entities.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,12 @@ namespace EvimiKur.Dtos
         public int UnitPrice { get; set; }
         public int UnitInStock { get; set; }
         public bool Status { get; set; }
-        public int UnitsInOrder { get; set; }
         public bool Discontinued { get; set; }
-        public string ImagePath { get; set; }
-        public ProductStatus ProductStatus { get; set; }
+        public string Image { get; set; }
+        public IFormFile UploadImage { get; set; }
+        public Dealer Dealer { get; set; }
         public CategoryListDto Category { get; set; }
+        
 
     }
 }

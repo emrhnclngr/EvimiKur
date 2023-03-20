@@ -40,15 +40,42 @@ namespace EvimiKur.Bussiness.Services
             return new Response<List<ProductListDto>>(ResponseType.Success, dto);
         }
 
-       
-        public async Task<List<ProductListDto>> GetList(StatusType type)
+
+        public async Task<List<ProductListDto>> GetList()
         {
             var query = _uow.GetRepository<Product>().GetQuery();
 
-            var list = await query.Include(x => x.Category).Include(x =>x.ProductStatus).Where(x => x.ProductStatusId == (int)type).ToListAsync(); 
+            var list = await query.Include(x => x.Category).ToListAsync();
 
             return _mapper.Map<List<ProductListDto>>(list);
         }
+
+        // Aşağıdaki metotlar if else yapısıyla birleştirilecek...
+        public async Task<List<ProductListDto>> GetListActiveProduct()
+        {
+            var query = _uow.GetRepository<Product>().GetQuery();
+
+            var list = await query.Include(x => x.Category).Include(x => x.Dealer).Where(x => x.Status == true).ToListAsync();
+
+            return _mapper.Map<List<ProductListDto>>(list);
+        }
+        public async Task<List<ProductListDto>> GetListInActiveProduct()
+        {
+            var query = _uow.GetRepository<Product>().GetQuery();
+
+            var list = await query.Include(x => x.Category).Include(x=>x.Dealer).Where(x => x.Status == false).ToListAsync();
+
+            return _mapper.Map<List<ProductListDto>>(list);
+        }
+        //public Task<List<ProductListDto>> GetDealerProducts(int id)
+        //{
+        //    var query = _uow.GetRepository<Product>().GetQuery();
+
+        //    var list = await query.Include(x => x.Category).Include(x => x.Dealer).Where(x=>x.DealerId == ).ToListAsync();
+
+        //    return _mapper.Map<List<ProductListDto>>(list);
+        //}
+
 
 
 

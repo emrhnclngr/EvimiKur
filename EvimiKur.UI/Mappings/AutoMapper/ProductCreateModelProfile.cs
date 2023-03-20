@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EvimiKur.Dtos;
+using EvimiKur.Entities.Entities;
 using EvimiKur.UI.Models;
 
 namespace EvimiKur.UI.Mappings.AutoMapper
@@ -8,7 +9,10 @@ namespace EvimiKur.UI.Mappings.AutoMapper
     {
         public ProductCreateModelProfile()
         {
-            CreateMap<ProductCreateModel, ProductCreateDto>();
+            CreateMap<ProductCreateModel, ProductCreateDto>().ReverseMap();
+            CreateMap<ProductCreateModel,ProductListDto>().ReverseMap();
+            CreateMap<Product, ProductCreateModel>().ReverseMap();
+
         }
     }
 }

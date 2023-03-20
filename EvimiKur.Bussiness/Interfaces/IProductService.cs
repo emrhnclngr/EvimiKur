@@ -16,7 +16,9 @@ namespace EvimiKur.Bussiness.Interfaces
     {
         Task<IResponse<List<ProductListDto>>> GetActivesAsync();
         //Task<IResponse<List<ProductListDto>>> GetCategoryWithProduct();
-        Task<List<ProductListDto>> GetList(StatusType type);
+        Task<List<ProductListDto>> GetList();
+        Task<List<ProductListDto>> GetListActiveProduct();
+        Task<List<ProductListDto>> GetListInActiveProduct();
 
 
     }
