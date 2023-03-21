@@ -343,6 +343,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Member\Models\" />
     <Folder Include="wwwroot\media\appuser\" />
     <Folder Include="wwwroot\media\products\" />
   </ItemGroup>

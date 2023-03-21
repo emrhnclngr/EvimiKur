@@ -32,19 +32,19 @@
 
 <div class="container-fluid">
     <form asp-action="Update" asp-controller="Product" method="post" enctype="multipart/form-data">
-        <input type="hidden" asp-for="@Model.Id"  />
+        <input type="hidden" asp-for="@Model.Id" />
         <input type="hidden" asp-for="Image" />
         <input type="hidden" asp-for="UploadImage" />
 
-        
+
 
         <div class="mb-3">
             <label>İlanın Başlığı:</label>
-            <input type="text" class="form-control" asp-for="@Model.ProductName"/>
+            <input type="text" class="form-control" asp-for="@Model.ProductName" />
         </div>
         <div class="mb-3">
             <label class="form-check-label">Aktif</label>
-            <input type="checkbox" asp-for="@Model.Status" class="form-check-input"/>
+            <input type="checkbox" asp-for="@Model.Status" class="form-check-input" />
         </div>
         <div class="mb-3">
             <label>Birim başına miktar</label>
@@ -64,31 +64,33 @@
         </div>
 
         <div class="form-group mb-3">
-            <label asp-for="@Model.UploadImage" class="control-label">Choose The Image</label>
-            <input type="file" asp-for="@Model.UploadImage" class="form-control"/>
+            <label class="control-label"></label>
+            <img src="~/media/products/@Model.Image" style="object-fit: contain; max-width: 200px; max-height: 150px;" />
+            <input type="file" asp-for="@Model.UploadImage" class="form-control" />
             <span asp-validation-for="@Model.UploadImage" class="text-danger"></span>
         </div>
+
         @* <div class="form-group">
         <label for="category">Category:</label>
         <select name="Category" class="form-control">
-            @foreach (var item in Model.Category)
-            {
-                <option value="@item.Value">@item.Text</option>
-            }
+        @foreach (var item in Model.Category)
+        {
+        <option value="@item.Value">@item.Text</option>
+        }
         </select>
-    </div>*@
+        </div>*@
         @*<div class="form-group">
-            <label asp-for="CategoryId" class="control-label">Choose The Category</label>
-            <select asp-for="CategoryId" class="form-control">
-                @foreach (var category in Model.Category)
-                {
-                    <option value="@category.Id">@category.Name</option>
-                }
-            </select>
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        <label asp-for="CategoryId" class="control-label">Choose The Category</label>
+        <select asp-for="CategoryId" class="form-control">
+        @foreach (var category in Model.Category)
+        {
+        <option value="@category.Id">@category.Name</option>
+        }
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>*@
         <div class="mb-3">
-            
+
             <select class="form-select" asp-items="@ViewBag.Categories" asp-for="@Model.CategoryId">
                 <option value="0">
                     Bir kategori seçiniz

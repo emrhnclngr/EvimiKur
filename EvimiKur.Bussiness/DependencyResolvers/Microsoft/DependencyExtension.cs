@@ -47,6 +47,7 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IDealerService, DealerService>();
+            services.AddScoped<ICartService, CartService>();
             
 
 

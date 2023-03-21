@@ -1,6 +1,6 @@
 ﻿using EvimiKur.Common;
 using Microsoft.AspNetCore.Mvc;
-
+using Newtonsoft.Json;
 
 namespace Udemy.AdvertisementApp.UI.Extensions
 {
@@ -40,5 +40,6 @@ namespace Udemy.AdvertisementApp.UI.Extensions
                 return controller.NotFound();
             return controller.RedirectToAction(actionName);
         }
+       
     }
 }

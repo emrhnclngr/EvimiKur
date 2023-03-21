@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="~/css/slick.min.css">
     <!--responsive css-->
     <link rel="stylesheet" href="~/css/responsive.css">
+    <link href="~/css/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Vendor CSS Files -->
+    @*<link href="~/css/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">*@
+
 </head>
 <body>
     <header id="header" class="top-head">
@@ -52,18 +56,31 @@
                                             if (User.Identity.IsAuthenticated)
                                             {
                                                 <ul>
-                                                    @if (User.IsInRole("Member"))
-                                                    {
-                                                        <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Member" asp-controller="Home" asp-action="Index" asp-route-id="">Welcome, @User.Identity.Name</a></span>
-                                                    }
-                                                    @if (User.IsInRole("Admin"))
-                                                    {
+                                                    <li>
+                                                        @if (User.IsInRole("Member"))
+                                                        {
+                                                            <ul>
+                                                                <li>
+                                                                    <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Member" asp-controller="Home" asp-action="Index" asp-route-id="">Welcome, @User.Identity.Name</a></span>
 
-                                                        
-                                                        <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Admin" asp-controller="Home" asp-action="Index">Welcome, @User.Identity.Name</a></span>
-                                                    }
+                                                                </li>
+                                                                <li>
+                                                                    <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-link nav-icon">
+                                                                        <i class="bi bi-bag-fill"></i>
+                                                                        <span class="badge bg-success badge-number">3</span>
+                                                                    </a>
+                                                                </li>
+                                                                
 
+                                                            </ul>
+                                                        }
+                                                        @if (User.IsInRole("Admin"))
+                                                        {
+                                                            <span><a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" asp-area="Admin" asp-controller="Home" asp-action="Index">Welcome, @User.Identity.Name</a></span>
+                                                        }
+                                                    </li>
                                                     <li><a asp-action="LogOut" asp-controller="Account">Log Out</a></li>
+
                                                 </ul>
                                             }
                                             else
@@ -74,7 +91,9 @@
 
                                                 </ul>
                                             }
+
                                         }
+
                                     </ul>
                                 </div>
                             </div>
@@ -234,7 +253,14 @@
     <script src="~/js/wow.min.js"></script>
     <!--custom js-->
     <script src="~/js/custom.js"></script>
+    <a href="~/css/assets/vendor/bootstrap-icons/bootstrap-icons.json"></a>
+
+
+
+    
+
 
     @RenderSection("script",false)
+    
 </body>
 </html>
