@@ -28,27 +28,16 @@
 <body>
     <header id="header" class="top-head">
         <!-- Static navbar -->
-        <nav class="navbar navbar-default">
+        <nav class=" nav justify-content-end">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12 left-rs">
-                        <div class="navbar-header">
-                            <button type="button" id="top-menu" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
+                    <div class="col-md-4 col-sm-12  left-rs">
+                        <div class="navbar-header mt-5">
                             <a asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/logo.png" alt="" /></a>
                         </div>
-                        <form class="navbar-form navbar-left web-sh">
-                            <div class="form">
-                                <input type="text" class="form-control" placeholder="Search for products or companies">
-                            </div>
-                        </form>
                     </div>
                     <div class="col-md-8 col-sm-12">
-                        <div class="right-nav">
+                        <div class="right-nav mt-5" >
                             <div class="login-sr">
                                 <div class="collapse navbar-collapse" id="navbarResponsive">
                                     <ul class="login-signup">
@@ -65,7 +54,7 @@
 
                                                                 </li>
                                                                 <li>
-                                                                    <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-link nav-icon">
+                                                                    <a asp-area="Member" asp-controller="Cart" asp-action="List" class="nav-link nav-icon">
                                                                         <i class="bi bi-bag-fill"></i>
                                                                         <span class="badge bg-success badge-number">3</span>
                                                                     </a>
@@ -97,14 +86,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="help-r hidden-xs">
-                                <div class="help-box">
-                                    <ul>
-                                        <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>Change</span> <img src="~/images/flag.png" alt="" /> </a> </li>
-                                        <li> <a href="#"><img class="h-i" src="~/images/help-icon.png" alt="" /> Help </a> </li>
-                                    </ul>
-                                </div>
-                            </div>
+                           
                             <div class="nav-b hidden-xs">
                                 <div class="nav-box">
                                     <ul>
