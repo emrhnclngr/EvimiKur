@@ -10,7 +10,7 @@ namespace EvimiKur.Dtos.OrderDetailDtos
     public class OrderDetailUpdateDto : IUpdateDto
     {
         public int Id { get; set; }
-        public int UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
         public int Discount { get; set; }
     }

@@ -4,14 +4,16 @@ using EvimiKur.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EvimiKur.DataAccess.Migrations
 {
     [DbContext(typeof(EvimiKurContext))]
-    partial class EvimiKurContextModelSnapshot : ModelSnapshot
+    [Migration("20230322221300_UnitPriceDecimal")]
+    partial class UnitPriceDecimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,14 +53,14 @@ namespace EvimiKur.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 3, 23, 3, 38, 29, 202, DateTimeKind.Local).AddTicks(1876),
+                            CreatedDate = new DateTime(2023, 3, 23, 1, 12, 59, 639, DateTimeKind.Local).AddTicks(4133),
                             Definition = "Admin",
                             Status = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 3, 23, 3, 38, 29, 203, DateTimeKind.Local).AddTicks(3550),
+                            CreatedDate = new DateTime(2023, 3, 23, 1, 12, 59, 640, DateTimeKind.Local).AddTicks(3160),
                             Definition = "Member",
                             Status = false
                         });
@@ -340,8 +342,8 @@ namespace EvimiKur.DataAccess.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("UnitPrice")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");

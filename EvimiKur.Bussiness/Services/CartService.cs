@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EvimiKur.Business.CustomExtensions;
 using EvimiKur.Bussiness.CustomExtensions;
 using EvimiKur.Bussiness.Interfaces;
 using EvimiKur.Common;
@@ -30,11 +29,14 @@ namespace EvimiKur.Bussiness.Services
         }
 
 
+        public decimal CalculateTotalPrice(decimal unitPrice, int quantity)
+        {
+            return unitPrice * quantity;
+        }
 
 
 
-
-        public void AddToCartCookie(ProductListDto product)
+        public void Add(ProductListDto product)
         {
             var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
 
@@ -45,25 +47,83 @@ namespace EvimiKur.Bussiness.Services
             }
             else
             {
-                productList.Add(product);
+                // Eğer sepette aynı ürün varsa, miktarını artır
+                var existingProduct = productList.FirstOrDefault(p => p.Id == product.Id);
+                if (existingProduct != null)
+                {
+                    existingProduct.Quantity += product.Quantity;
+                    existingProduct.UnitPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
+                }
+                else
+                {
+                    productList.Add(product);
+                }
             }
 
             _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
         }
 
-        public List<ProductListDto> ProductInTheCart()
+        public List<ProductListDto> List()
         {
             return _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
         }
 
-        public async void RemoveCartCookie(int id)
+        public void Remove(int productId)
         {
             var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
-            var response = await _productService.GetByIdAsync<ProductListDto>(id);
-            var product = response.Data;
-            productList.Remove(product);
+
+            if (productList != null)
+            {
+                var productToRemove = productList.FirstOrDefault(p => p.Id == productId);
+                if (productToRemove != null)
+                {
+                    var product = new ProductListDto();
+                    productList.Remove(productToRemove);
+                    _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+                }
+            }
+        }
+        public void IncreaseCartCookie(int id)
+        {
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+
+            if (productList != null)
+            {
+                var existingProduct = productList.FirstOrDefault(p => p.Id == id);
+                
+                if (existingProduct != null)
+                {
+                    
+                    existingProduct.Quantity += 1;
+                    existingProduct.UnitPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
+                    
+                }
+            }
+
             _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
         }
+
+
+
+
+
+
+
+
+        //public void IncreaseCartCookie(int id)
+        //{
+        //    var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+
+        //    if (productList != null)
+        //    {
+        //        var product = productList.FirstOrDefault(p => p.Id == id);
+        //        if (product != null)
+        //        {
+        //            product.Quantity += 1;
+        //            _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+        //        }
+        //    }
+        //}
 
 
 

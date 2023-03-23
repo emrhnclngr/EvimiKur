@@ -3,6 +3,7 @@ using EvimiKur.Bussiness.Interfaces;
 using EvimiKur.Common;
 using EvimiKur.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace EvimiKur.UI.Areas.Member.Controllers
@@ -27,7 +28,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
         //}
         public IActionResult List()
         {
-            return View(_cartService.ProductInTheCart());
+            return View(_cartService.List());
         }
        
         public async Task<IActionResult> AddCart(int id)
@@ -37,7 +38,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             if (response.ResponseType == ResponseType.Success)
             {
                 var product = response.Data;
-                _cartService.AddToCartCookie(product);
+                _cartService.Add(product);
                 TempData["info"] = "Product Add to Cart";
             }
             else
@@ -46,11 +47,17 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             }
             return RedirectToAction("Index", "Product");
         }
-        public async Task<IActionResult> Remove(int id)
+        public IActionResult Remove(int id)
         {
-            _cartService.RemoveCartCookie(id);
-
+            _cartService.Remove(id);
             return RedirectToAction("List","Cart");
+        }
+
+        public IActionResult IncreaseProductQuantity(int id)
+        {
+            _cartService.IncreaseCartCookie(id);
+            var productList = _cartService.List();
+            return RedirectToAction("List", "Cart");
         }
 
 

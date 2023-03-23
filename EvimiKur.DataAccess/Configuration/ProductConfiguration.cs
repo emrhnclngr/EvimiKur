@@ -14,7 +14,7 @@ namespace EvimiKur.DataAccess.Configuration
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.Property(x => x.ProductName).HasMaxLength(300).IsRequired();
-            builder.Property(x => x.QuantityPerUnit).IsRequired();
+            builder.Property(x => x.Quantity).IsRequired();
             builder.Property(x => x.UnitPrice).IsRequired();
             builder.Property(x => x.UnitInStock).IsRequired();
             builder.Property(x => x.Discontinued).IsRequired();

@@ -13,7 +13,7 @@ namespace EvimiKur.Bussiness.ValidationRules.ProductValidation
         public ProductCreateDtoValidator()
         {
             RuleFor(x => x.ProductName).NotEmpty();
-            RuleFor(x => x.QuantityPerUnit).NotEmpty();
+            RuleFor(x => x.Quantity).NotEmpty();
             RuleFor(x => x.UnitPrice).NotEmpty();
             //RuleFor(x => x.UnitInStock).NotEmpty();
             RuleFor(x => x.CategoryId).NotEmpty();

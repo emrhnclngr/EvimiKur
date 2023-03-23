@@ -10,6 +10,10 @@ namespace EvimiKur.Entities.Entities
 {
     public class Order : BaseEntity
     {
+        public Order()
+        {
+            OrderDetails = new List<OrderDetail>();
+        }
         public DateTime OrderDate { get; set; }
         public DateTime RequiredDate { get; set; }
         public DateTime ShippedDate { get; set; }
@@ -29,7 +33,7 @@ namespace EvimiKur.Entities.Entities
         public List<OrderDetail> OrderDetails { get; set; }
 
         public int SupplierId { get; set; }
-        public Supplier Supplier { get; set; }
+        public Supplier Supplier { get; set; } // bunu düzenle ne alaka !!!!!!  (Dealer olabilir)
 
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }

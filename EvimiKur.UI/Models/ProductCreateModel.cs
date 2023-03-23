@@ -13,7 +13,7 @@ namespace EvimiKur.UI.Models
        
         
         public string ProductName { get; set; }
-        public string QuantityPerUnit { get; set; }
+        public string Quantity { get; set; }
         public int UnitPrice { get; set; }
         public int UnitInStock { get; set; }
         public bool Status { get; set; }
