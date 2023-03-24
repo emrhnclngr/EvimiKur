@@ -18,6 +18,7 @@ namespace EvimiKur.Bussiness.Interfaces
         List<ProductListDto> List();          // Asıl kullanılan                
         void Remove(int productId);       // Asıl kullanılan
         void IncreaseCartCookie(int id);
+        void DecreaseCartCookie(int id);
 
 
 

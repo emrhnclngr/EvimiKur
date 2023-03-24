@@ -2,6 +2,7 @@
 using EvimiKur.Bussiness.Interfaces;
 using EvimiKur.Common;
 using EvimiKur.Dtos;
+using EvimiKur.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             var response = await _productService.GetByIdAsync<ProductListDto>(id);
             if (response.ResponseType == ResponseType.Success)
             {
+
                 var product = response.Data;
                 _cartService.Add(product);
                 TempData["info"] = "Product Add to Cart";
@@ -56,6 +58,12 @@ namespace EvimiKur.UI.Areas.Member.Controllers
         public IActionResult IncreaseProductQuantity(int id)
         {
             _cartService.IncreaseCartCookie(id);
+            var productList = _cartService.List();
+            return RedirectToAction("List", "Cart");
+        }
+        public IActionResult DecreaseProductQuantity(int id)
+        {
+            _cartService.DecreaseCartCookie(id);
             var productList = _cartService.List();
             return RedirectToAction("List", "Cart");
         }

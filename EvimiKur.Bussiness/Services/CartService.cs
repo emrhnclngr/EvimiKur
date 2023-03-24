@@ -43,6 +43,7 @@ namespace EvimiKur.Bussiness.Services
             if (productList == null)
             {
                 productList = new List<ProductListDto>();
+                //product.Quantity = 1;
                 productList.Add(product);
             }
             else
@@ -52,7 +53,7 @@ namespace EvimiKur.Bussiness.Services
                 if (existingProduct != null)
                 {
                     existingProduct.Quantity += product.Quantity;
-                    existingProduct.UnitPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
+                    //existingProduct.TotalPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
                 }
                 else
                 {
@@ -65,7 +66,9 @@ namespace EvimiKur.Bussiness.Services
 
         public List<ProductListDto> List()
         {
-            return _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+
+            return productList;
         }
 
         public void Remove(int productId)
@@ -90,17 +93,53 @@ namespace EvimiKur.Bussiness.Services
             if (productList != null)
             {
                 var existingProduct = productList.FirstOrDefault(p => p.Id == id);
-                
+               
                 if (existingProduct != null)
                 {
                     
                     existingProduct.Quantity += 1;
-                    existingProduct.UnitPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
+                    //existingProduct.TotalPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
                     
                 }
             }
 
             _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+        }
+        public void DecreaseCartCookie(int id)
+        {
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+
+            if (productList != null)
+            {
+                var existingProduct = productList.FirstOrDefault(p => p.Id == id);
+
+                if (existingProduct != null)
+                {
+                    if(existingProduct.Quantity > 0)
+                    existingProduct.Quantity -= 1;
+                    else
+                        existingProduct.Quantity = 0;
+                    //existingProduct.TotalPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
+
+                }
+            }
+
+            _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+        }
+        public void TotalPrice()
+        {
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+
+            if(productList != null)
+            {
+                decimal totalPrice = 0;
+                foreach (var product in productList)
+                {
+                    decimal productPrice = product.Price;
+                    totalPrice = productPrice;
+                }
+                _contextAccessor.HttpContext.Response.WriteAsync("Toplam Fiyat" + totalPrice);
+            }
         }
 
 
