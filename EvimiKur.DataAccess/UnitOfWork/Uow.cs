@@ -2,6 +2,7 @@
 using EvimiKur.DataAccess.Interfaces;
 using EvimiKur.DataAccess.Repositories;
 using EvimiKur.Entities.Base;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,6 @@ namespace EvimiKur.DataAccess.UnitOfWork
         {
             await _context.SaveChangesAsync();
         }
+       
     }
 }

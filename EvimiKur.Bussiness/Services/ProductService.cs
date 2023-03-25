@@ -67,14 +67,7 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<ProductListDto>>(list);
         }
-        //public Task<List<ProductListDto>> GetDealerProducts(int id)
-        //{
-        //    var query = _uow.GetRepository<Product>().GetQuery();
-
-        //    var list = await query.Include(x => x.Category).Include(x => x.Dealer).Where(x=>x.DealerId == ).ToListAsync();
-
-        //    return _mapper.Map<List<ProductListDto>>(list);
-        //}
+        
 
 
 

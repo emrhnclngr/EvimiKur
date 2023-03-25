@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using EvimiKur.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace EvimiKur.Business.Extensions
 {
@@ -24,5 +25,6 @@ namespace EvimiKur.Business.Extensions
             }
             return errors;
         }
+        
     }
 }

@@ -33,23 +33,23 @@ namespace EvimiKur.DataAccess.Repositories
             return await _context.Set<T>().AsNoTracking().ToListAsync();
             
         }
-        //public async Task<List<TResult>> GetFilteredList<TResult>(Expression<Func<T, TResult>> select,
-        //                                                            Expression<Func<T, bool>> where = null,
-        //                                                            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> join = null)
-        //{
-        //    IQueryable<T> query = _context.Set<T>();
+        public async Task<List<TResult>> GetFilteredList<TResult>(Expression<Func<T, TResult>> select,
+                                                                    Expression<Func<T, bool>> where = null,
+                                                                    Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> join = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
 
-        //    if (join != null) query = join(query);
+            if (join != null) query = join(query);
 
-        //    if (where != null) query = query.Where(where);
+            if (where != null) query = query.Where(where);
 
-        //    if (orderBy != null) return await orderBy(query).Select(select).ToListAsync();
+            if (orderBy != null) return await orderBy(query).Select(select).ToListAsync();
 
-        //    else return await query.Select(select).ToListAsync();
-        //}
+            else return await query.Select(select).ToListAsync();
+        }
         //public List<AppUserListDto> GetAppUser()
         //{
-            
+
         //    return _context.AppUsers
         //        .Select(x => new AppUserListDto()
         //        {
@@ -63,7 +63,7 @@ namespace EvimiKur.DataAccess.Repositories
         //            Email = x.Email,
         //            BirthDate = x.BirthDate
         //        }).ToList();
-            
+
         //}
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)

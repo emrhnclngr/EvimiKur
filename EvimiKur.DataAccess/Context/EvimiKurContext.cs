@@ -14,6 +14,7 @@ namespace EvimiKur.DataAccess.Context
         public EvimiKurContext(DbContextOptions<EvimiKurContext> options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
@@ -46,4 +47,5 @@ namespace EvimiKur.DataAccess.Context
 
 
     }
+
 }

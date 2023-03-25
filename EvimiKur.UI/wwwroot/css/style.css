@@ -211,9 +211,10 @@ header .navbar-default .navbar-header {
 	background: transparent;
 	border-radius: 0;
 	border: 1px solid #eee;
-	padding-left: 15px;
+	padding-left: 100px;
 	box-shadow: none;
 	color: #666;
+	margin:auto;
 }
 
 .iq-search i {
@@ -222,6 +223,7 @@ header .navbar-default .navbar-header {
 	position: absolute;
 	right: 27px;
 	top: 24px;
+	
 }
 
 .iq-search .search-btn::before {

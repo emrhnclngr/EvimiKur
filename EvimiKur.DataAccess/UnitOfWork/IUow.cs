@@ -12,5 +12,6 @@ namespace EvimiKur.DataAccess.UnitOfWork
     {
         IRepository<T> GetRepository<T>() where T: BaseEntity;
         Task SaveChangesAsync();
+        
     }
 }

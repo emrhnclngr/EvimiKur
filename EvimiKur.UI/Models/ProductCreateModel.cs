@@ -13,9 +13,9 @@ namespace EvimiKur.UI.Models
        
         
         public string ProductName { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public int UnitPrice { get; set; }
-        public int UnitInStock { get; set; }
+        public decimal UnitInStock { get; set; }
         public bool Status { get; set; }
         public bool Discontinued { get; set; }
         public string Image { get; set; }

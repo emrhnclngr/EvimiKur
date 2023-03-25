@@ -1,0 +1,40 @@
+﻿@model List<ProductListModel>
+@{
+    Layout = "_Layout";
+}
+
+
+<h4>All Products</h4>
+
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill" /></svg>
+        <div>
+            Ekledin la gardaş!!! @TempData["info"].ToString()
+        </div>
+    </div>
+
+}
+
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    <img src="/media/products/@item.Image" class="card-img-top">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">@item.ProductName</p>
+                    <p class="card-text">@item.UnitPrice.ToString("C2")</p>
+                </div>
+                <div class="card-footer">
+                    <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
