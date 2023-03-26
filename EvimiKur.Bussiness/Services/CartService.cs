@@ -6,6 +6,7 @@ using EvimiKur.Dtos;
 using EvimiKur.Dtos.Interfaces;
 using EvimiKur.Entities.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,12 @@ namespace EvimiKur.Bussiness.Services
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IMapper _mapper;
 
-        public CartService(IHttpContextAccessor contextAccessor, IMapper mapper, IProductService productService)
+        public CartService(IHttpContextAccessor contextAccessor, IMapper mapper, IProductService productService, IAppUserService appUserService)
         {
             _contextAccessor = contextAccessor;
             _mapper = mapper;
             _productService = productService;
+            
         }
 
 
@@ -94,12 +96,16 @@ namespace EvimiKur.Bussiness.Services
             {
                 var existingProduct = productList.FirstOrDefault(p => p.Id == id);
                
-                if (existingProduct != null)
+                if (existingProduct.Quantity < existingProduct.UnitInStock)
                 {
                     
                     existingProduct.Quantity += 1;
                     //existingProduct.TotalPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
                     
+                }
+                else
+                {
+                    existingProduct.Quantity = existingProduct.UnitInStock;
                 }
             }
 
@@ -126,21 +132,7 @@ namespace EvimiKur.Bussiness.Services
 
             _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
         }
-        public void TotalPrice()
-        {
-            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
-
-            if(productList != null)
-            {
-                decimal totalPrice = 0;
-                foreach (var product in productList)
-                {
-                    decimal productPrice = product.Price;
-                    totalPrice = productPrice;
-                }
-                _contextAccessor.HttpContext.Response.WriteAsync("Toplam Fiyat" + totalPrice);
-            }
-        }
+       
 
 
 
@@ -149,53 +141,6 @@ namespace EvimiKur.Bussiness.Services
 
 
 
-        //public void IncreaseCartCookie(int id)
-        //{
-        //    var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
-
-        //    if (productList != null)
-        //    {
-        //        var product = productList.FirstOrDefault(p => p.Id == id);
-        //        if (product != null)
-        //        {
-        //            product.Quantity += 1;
-        //            _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
-        //        }
-        //    }
-        //}
-
-
-
-
-
-
-        //public void AddToCart(ProductListDto product)
-        //{
-        //    var productList = _contextAccessor.HttpContext.Session.GetObject<List<ProductListDto>>("sepet");
-
-        //    if(productList == null)
-        //    {
-        //        productList = new List<ProductListDto>();
-        //        productList.Add(product);
-        //    }
-        //    else
-        //    {
-        //        productList.Add(product);
-        //    }
-
-        //   _contextAccessor.HttpContext.Session.SetObject("sepet", productList);
-
-        //}
-        //public void RemoveCart(ProductListDto product)
-        //{
-        //    var productList = _contextAccessor.HttpContext.Session.GetObject<List<ProductListDto>>("sepet");
-        //    productList.Remove(product);
-        //    _contextAccessor.HttpContext.Session.SetObject("sepet", productList);
-        //}
-        //public List<ProductListDto> ProductInTheCart()
-        //{
-        //    return _contextAccessor.HttpContext.Session.GetObject<List<ProductListDto>>("sepet");
-        //}
 
 
 

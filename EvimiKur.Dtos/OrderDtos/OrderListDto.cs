@@ -10,7 +10,7 @@ namespace EvimiKur.Dtos.OrderDtos
     public class OrderListDto : IDto
     {
         public DateTime OrderDate { get; set; }
-        public DateTime RequiredDate { get; set; }
+        //public DateTime RequiredDate { get; set; }
         public DateTime ShippedDate { get; set; }
         public int ShipVia { get; set; } // Değiştirilebilir.(İsmi ile)
         public int Freight { get; set; }
@@ -21,5 +21,6 @@ namespace EvimiKur.Dtos.OrderDtos
         public string ShipAddress { get; set; }
         public string ShipPostalCode { get; set; }
         public bool Confirmed { get; set; }
+        
     }
 }

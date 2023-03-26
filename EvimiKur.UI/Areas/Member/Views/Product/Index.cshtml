@@ -33,7 +33,15 @@
                     <p class="card-text">@item.UnitPrice.ToString("C2")</p>
                 </div>
                 <div class="card-footer">
-                    <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="LogIn">Add to Cart</a>
+                    }
+                    
                 </div>
             </div>
         </div>

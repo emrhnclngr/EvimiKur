@@ -24,7 +24,7 @@ namespace EvimiKur.Dtos
         public Dealer Dealer { get; set; }
         public CategoryListDto Category { get; set; }
         public decimal Price => (UnitPrice * Quantity);
-        public decimal TotalPrice { get; set; }
+        
 
 
 

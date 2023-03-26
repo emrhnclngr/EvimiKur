@@ -68,6 +68,7 @@ namespace EvimiKur.Bussiness.Services
             return _mapper.Map<List<ProductListDto>>(list);
         }
         
+        
 
 
 

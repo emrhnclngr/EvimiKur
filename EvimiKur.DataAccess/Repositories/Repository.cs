@@ -33,6 +33,7 @@ namespace EvimiKur.DataAccess.Repositories
             return await _context.Set<T>().AsNoTracking().ToListAsync();
             
         }
+        
         public async Task<List<TResult>> GetFilteredList<TResult>(Expression<Func<T, TResult>> select,
                                                                     Expression<Func<T, bool>> where = null,
                                                                     Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> join = null)

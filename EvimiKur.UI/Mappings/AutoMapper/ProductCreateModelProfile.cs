@@ -13,6 +13,7 @@ namespace EvimiKur.UI.Mappings.AutoMapper
             CreateMap<ProductCreateModel,ProductListDto>().ReverseMap();
             CreateMap<Product, ProductCreateModel>().ReverseMap();
             CreateMap<Product, ProductListModel>().ReverseMap();
+           
 
         }
     }

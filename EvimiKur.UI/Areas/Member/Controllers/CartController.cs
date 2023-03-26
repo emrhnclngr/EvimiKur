@@ -13,14 +13,16 @@ namespace EvimiKur.UI.Areas.Member.Controllers
     public class CartController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IAppUserService _appUserService;
         private readonly ICartService _cartService;
         private readonly IMapper _mapper;
 
-        public CartController(IProductService productService, ICartService cartService, IMapper mapper)
+        public CartController(IProductService productService, ICartService cartService, IMapper mapper, IAppUserService appUserService)
         {
             _productService = productService;
             _cartService = cartService;
             _mapper = mapper;
+            _appUserService = appUserService;
         }
 
         //public IActionResult Index()
@@ -55,7 +57,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             return RedirectToAction("List","Cart");
         }
 
-        public IActionResult IncreaseProductQuantity(int id)
+        public  IActionResult IncreaseProductQuantity(int id)
         {
             _cartService.IncreaseCartCookie(id);
             var productList = _cartService.List();
@@ -67,6 +69,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             var productList = _cartService.List();
             return RedirectToAction("List", "Cart");
         }
+        
 
 
     }
