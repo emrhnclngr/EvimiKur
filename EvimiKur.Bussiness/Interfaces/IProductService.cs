@@ -19,6 +19,7 @@ namespace EvimiKur.Bussiness.Interfaces
         Task<List<ProductListDto>> GetList();
         Task<List<ProductListDto>> GetListActiveProduct();
         Task<List<ProductListDto>> GetListInActiveProduct();
+        Task<List<ProductListDto>> Search(string query);
 
 
     }

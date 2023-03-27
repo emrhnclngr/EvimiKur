@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EvimiKur.DataAccess.Migrations
 {
     [DbContext(typeof(EvimiKurContext))]
-    [Migration("20230319143858_SevenCreate")]
-    partial class SevenCreate
+    [Migration("20230327035842_SupplierCreated")]
+    partial class SupplierCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,14 +53,14 @@ namespace EvimiKur.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 3, 19, 17, 38, 57, 639, DateTimeKind.Local).AddTicks(269),
+                            CreatedDate = new DateTime(2023, 3, 27, 6, 58, 42, 518, DateTimeKind.Local).AddTicks(1857),
                             Definition = "Admin",
                             Status = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 3, 19, 17, 38, 57, 639, DateTimeKind.Local).AddTicks(9572),
+                            CreatedDate = new DateTime(2023, 3, 27, 6, 58, 42, 519, DateTimeKind.Local).AddTicks(4636),
                             Definition = "Member",
                             Status = false
                         });
@@ -249,11 +249,20 @@ namespace EvimiKur.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Confirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -264,43 +273,28 @@ namespace EvimiKur.DataAccess.Migrations
                     b.Property<int>("Freight")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<DateTime>("RequiredDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ShipAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShipCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShipCountry")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShipName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShipPostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShipRegion")
+                    b.Property<string>("Region")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ShipVia")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("ShippedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -342,8 +336,8 @@ namespace EvimiKur.DataAccess.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UnitPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -387,9 +381,8 @@ namespace EvimiKur.DataAccess.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("QuantityPerUnit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -397,8 +390,8 @@ namespace EvimiKur.DataAccess.Migrations
                     b.Property<int>("UnitInStock")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UnitsInOrder")
                         .HasColumnType("int");

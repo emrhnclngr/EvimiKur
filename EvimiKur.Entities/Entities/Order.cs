@@ -14,17 +14,17 @@ namespace EvimiKur.Entities.Entities
         {
             OrderDetails = new List<OrderDetail>();
         }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime RequiredDate { get; set; }
-        public DateTime ShippedDate { get; set; }
+        //public DateTime RequiredDate { get; set; }
+        //public DateTime ShippedDate { get; set; } ileriki zamanlarda düşünülür....
         public int ShipVia { get; set; } // Değiştirilebilir.(İsmi ile)
         public int Freight { get; set; }
-        public string ShipName { get; set; }
-        public string ShipCountry { get; set; }
-        public string ShipCity { get; set; }
-        public string ShipRegion { get; set; }
-        public string ShipAddress { get; set; }
-        public string ShipPostalCode { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Region { get; set; }
+        public string Address { get; set; }
         public bool Confirmed { get; set; }
 
         //Relational Property
@@ -32,8 +32,8 @@ namespace EvimiKur.Entities.Entities
 
         public List<OrderDetail> OrderDetails { get; set; }
 
-        public int SupplierId { get; set; }
-        public Supplier Supplier { get; set; } // bunu düzenle ne alaka !!!!!!  (Dealer olabilir)
+        public int SupplierId { get; set; }   
+        public Supplier Supplier  { get; set; } // bunu düzenle ne alaka !!!!!!  (Dealer olabilir)
 
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }

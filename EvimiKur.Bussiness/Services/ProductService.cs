@@ -15,6 +15,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EvimiKur.Bussiness.Services
 {
@@ -67,8 +68,17 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<ProductListDto>>(list);
         }
-        
-        
+        public async Task<List<ProductListDto>> Search(string query)
+        {
+            var products = _uow.GetRepository<Product>().GetQuery();
+
+            var list = await products.Include(x => x.Category).Include(x => x.Dealer).Where(x => x.ProductName.Contains(query.ToUpper().Trim()) && x.Status == true).OrderByDescending(x => x.CreatedDate).ToListAsync();
+
+            return _mapper.Map<List<ProductListDto>>(list);
+
+        }
+
+
 
 
 

@@ -20,6 +20,7 @@ using EvimiKur.Common.Enums;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace EvimiKur.UI.Areas.Admin.Controllers
 {
@@ -47,10 +48,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             _dealerService = dealerService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+       
         public async Task<IActionResult> Create()
         {
 
@@ -91,11 +89,11 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             var dto = _mapper.Map<ProductCreateDto>(model);
             dto.Image = imageName;
             var response = await _productService.CreateAsync(dto);
-            return this.ResponseRedirectAction(response, "List");
+            return this.ResponseRedirectAction(response, "Index");
 
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> Index()
         {
             //var products = await _productService.GetCategoryWithProduct();
             var products = await _productService.GetListActiveProduct();
@@ -103,6 +101,11 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
 
             //var response = await _productService.GetAllAsync();
             //return this.ResponseView(response);
+        }
+        public async Task<IActionResult> List(string query)
+        {
+
+            return View(await _productService.Search(query));
         }
         public async Task<IActionResult> PassiveProductList()
         {
@@ -167,7 +170,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             }).ToList();
 
 
-            return this.ResponseRedirectAction(response, "List");
+            return this.ResponseRedirectAction(response, "Index");
         }
 
         public async Task<IActionResult> Remove(int id)
@@ -176,7 +179,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             if (product.Data.Status == true)
             {
                 var response = await _productService.RemoveAsync(id);
-                return this.ResponseRedirectAction(response, "List");
+                return this.ResponseRedirectAction(response, "Index");
             }
             else
             {

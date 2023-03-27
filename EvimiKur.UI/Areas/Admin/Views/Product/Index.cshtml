@@ -31,7 +31,21 @@
             <div class="card-header">
                 <h4 class="card-title">Product List</h4>
             </div>
-            
+            <form asp-area="Admin" asp-controller="Product" asp-action="List" method="get">
+
+                <div style="margin-left: 400px" class="product-sh">
+                    <div class="col-sm-6">
+                        <div class="form-sh">
+                            <input type="text" id="search" name="query" placeholder="Search something you love">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-sh"> <button type="submit" class="btn btn-outline-primary">Search</button></div>
+                    </div>
+
+                </div>
+
+            </form>
             <div class="card-body">
                 <div class="table table-responsive table-responsive-sm">
                     <table class="table table-striped">
@@ -68,13 +82,13 @@
                                     <td>@item.Dealer.Name</td>
                                     <td>@item.Quantity</td>
                                     <td>@item.UnitInStock</td>
-                                    
-                                    
+
+
                                     <td>
-                                        <a asp-area="Admin" asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
+                                        <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
                                     </td>
                                     <td>
-                                        <a asp-area="Admin" asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
+                                        <a asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
                                     </td>
                                 </tr>
                             }
@@ -83,8 +97,8 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Product</a>
-                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
+                <a asp-controller="Product" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Product</a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
             </div>
         </div>
     </div>

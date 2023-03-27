@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EvimiKur.DataAccess.Migrations
 {
-    public partial class FourCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,12 +68,16 @@ namespace EvimiKur.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductStatus",
+                name: "Dealers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Definition = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Responsible = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -81,7 +85,7 @@ namespace EvimiKur.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductStatus", x => x.Id);
+                    table.PrimaryKey("PK_Dealers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,14 +176,14 @@ namespace EvimiKur.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    QuantityPerUnit = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UnitPrice = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UnitInStock = table.Column<int>(type: "int", nullable: false),
                     UnitsInOrder = table.Column<int>(type: "int", nullable: false),
                     Discontinued = table.Column<bool>(type: "bit", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ProductStatusId = table.Column<int>(type: "int", nullable: false),
+                    DealerId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -195,9 +199,9 @@ namespace EvimiKur.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_ProductStatus_ProductStatusId",
-                        column: x => x.ProductStatusId,
-                        principalTable: "ProductStatus",
+                        name: "FK_Products_Dealers_DealerId",
+                        column: x => x.DealerId,
+                        principalTable: "Dealers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -208,20 +212,19 @@ namespace EvimiKur.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
-                    RequiredDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShippedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShipVia = table.Column<int>(type: "int", nullable: false),
                     Freight = table.Column<int>(type: "int", nullable: false),
-                    ShipName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShipCountry = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShipCity = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShipRegion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShipAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShipPostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Confirmed = table.Column<bool>(type: "bit", nullable: false),
-                    SupplierId = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false),
+                    DealerId = table.Column<int>(type: "int", nullable: true),
+                    SupplierId = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -237,11 +240,17 @@ namespace EvimiKur.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Orders_Dealers_DealerId",
+                        column: x => x.DealerId,
+                        principalTable: "Dealers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Orders_Suppliers_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "Suppliers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -250,7 +259,7 @@ namespace EvimiKur.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UnitPrice = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
@@ -305,12 +314,12 @@ namespace EvimiKur.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 1, new DateTime(2023, 3, 15, 20, 14, 20, 665, DateTimeKind.Local).AddTicks(2324), "Admin", null, false, null });
+                values: new object[] { 1, new DateTime(2023, 3, 27, 6, 3, 19, 99, DateTimeKind.Local).AddTicks(9957), "Admin", null, false, null });
 
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 2, new DateTime(2023, 3, 15, 20, 14, 20, 666, DateTimeKind.Local).AddTicks(235), "Member", null, false, null });
+                values: new object[] { 2, new DateTime(2023, 3, 27, 6, 3, 19, 101, DateTimeKind.Local).AddTicks(203), "Member", null, false, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppUserRoles_AppRoleId_AppUserId",
@@ -339,6 +348,11 @@ namespace EvimiKur.DataAccess.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_DealerId",
+                table: "Orders",
+                column: "DealerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_SupplierId",
                 table: "Orders",
                 column: "SupplierId");
@@ -354,9 +368,9 @@ namespace EvimiKur.DataAccess.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductStatusId",
+                name: "IX_Products_DealerId",
                 table: "Products",
-                column: "ProductStatusId");
+                column: "DealerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategories_CategoryId",
@@ -391,10 +405,10 @@ namespace EvimiKur.DataAccess.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "ProductStatus");
+                name: "AppUsers");
 
             migrationBuilder.DropTable(
-                name: "AppUsers");
+                name: "Dealers");
 
             migrationBuilder.DropTable(
                 name: "Suppliers");

@@ -41,28 +41,7 @@ namespace EvimiKur.UI.Controllers
         public async Task<IActionResult> List(string query)
         {
 
-
-            var products = await _uow.GetRepository<Product>().GetFilteredList(
-
-                //TODO:ProductListDto yerine ProductListModel dönülecek.
-                select: x => new ProductListDto
-                {
-                    ProductName = x.ProductName,
-                    Quantity = x.Quantity,
-                    UnitInStock = x.UnitInStock,
-                    UnitPrice = x.UnitPrice,
-                    Status = x.Status,
-                    Discontinued = x.Discontinued,
-                    Image = x.Image,
-                    UploadImage = x.UploadImage,
-                },
-                where: (x => x.ProductName.Contains(query.ToUpper().Trim())),
-                orderyBy: x => x.OrderByDescending(x => x.CreatedDate),
-                join: x => x.Include(x => x.Category));
-          
-            
-            
-            return View(products);
+            return View(await _productService.Search(query));
         }
 
 

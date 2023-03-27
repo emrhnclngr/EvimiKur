@@ -17,5 +17,6 @@ namespace EvimiKur.Entities.Entities
 
 
         public List<Product> Products { get; set; }
+        
     }
 }

@@ -1,11 +1,12 @@
 ﻿using EvimiKur.Dtos.Interfaces;
+using EvimiKur.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvimiKur.Dtos.OrderDtos
+namespace EvimiKur.Dtos
 {
     public class OrderListDto : IDto
     {
@@ -21,6 +22,10 @@ namespace EvimiKur.Dtos.OrderDtos
         public string ShipAddress { get; set; }
         public string ShipPostalCode { get; set; }
         public bool Confirmed { get; set; }
-        
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+        public int SupplierId { get; set; }
+
+
     }
 }

@@ -1,16 +1,18 @@
 ﻿using EvimiKur.Dtos.Interfaces;
+using EvimiKur.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvimiKur.Dtos.OrderDtos
+namespace EvimiKur.Dtos
 {
     public class OrderCreateDto : IDto
     {
+
         public DateTime OrderDate { get; set; }
-        public DateTime RequiredDate { get; set; }
+        //public DateTime RequiredDate { get; set; }
         public DateTime ShippedDate { get; set; }
         public int ShipVia { get; set; } // Değiştirilebilir.(İsmi ile)
         public int Freight { get; set; }
@@ -21,5 +23,8 @@ namespace EvimiKur.Dtos.OrderDtos
         public string ShipAddress { get; set; }
         public string ShipPostalCode { get; set; }
         public bool Confirmed { get; set; }
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+        public int SupplierId { get; set; }
     }
 }

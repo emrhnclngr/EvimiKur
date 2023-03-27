@@ -3,6 +3,7 @@ using EvimiKur.Bussiness.Services;
 using EvimiKur.Bussiness.ValidationRules.AppUserValidation;
 using EvimiKur.Bussiness.ValidationRules.CategoryValidation;
 using EvimiKur.Bussiness.ValidationRules.DealerValidation;
+using EvimiKur.Bussiness.ValidationRules.OrderValidation;
 using EvimiKur.Bussiness.ValidationRules.ProductValidation;
 using EvimiKur.DataAccess.Context;
 using EvimiKur.DataAccess.UnitOfWork;
@@ -40,6 +41,8 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddTransient<IValidator<ProductUpdateDto>, ProductUpdateDtoValidator>();
             services.AddTransient<IValidator<DealerCreateDto>, DealerCreateDtoValidator>();
             services.AddTransient<IValidator<DealerUpdateDto>, DealerUpdateDtoValidator>();
+            services.AddTransient<IValidator<OrderCreateDto>, OrderCreateDtoValidator>();
+            services.AddTransient<IValidator<OrderUpdateDto>, OrderUpdateDtoValidator>();
 
 
 
@@ -48,6 +51,7 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IDealerService, DealerService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IOrderService, OrderService>();
             
 
 

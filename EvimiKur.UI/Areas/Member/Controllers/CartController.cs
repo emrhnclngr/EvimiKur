@@ -5,6 +5,8 @@ using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace EvimiKur.UI.Areas.Member.Controllers
@@ -29,8 +31,11 @@ namespace EvimiKur.UI.Areas.Member.Controllers
         //{
         //    return View();
         //}
-        public IActionResult List()
+        public async  Task<IActionResult> List()
         {
+            var UserId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+            var userResponse = await _appUserService.GetByIdAsync<AppUserListDto>(UserId);
+            ViewBag.UserId = UserId;
             return View(_cartService.List());
         }
        
@@ -68,6 +73,11 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             _cartService.DecreaseCartCookie(id);
             var productList = _cartService.List();
             return RedirectToAction("List", "Cart");
+        }
+        public async Task<IActionResult> Payment()
+        {
+            
+            return View();
         }
         
 
