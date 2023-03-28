@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using EvimiKur.Bussiness.CustomExtensions;
 using EvimiKur.Bussiness.Interfaces;
 using EvimiKur.Common;
 using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EvimiKur.UI.Areas.Member.Controllers
@@ -16,15 +20,17 @@ namespace EvimiKur.UI.Areas.Member.Controllers
     {
         private readonly IProductService _productService;
         private readonly IAppUserService _appUserService;
+        private readonly IHttpContextAccessor _contextAccessor;
         private readonly ICartService _cartService;
         private readonly IMapper _mapper;
 
-        public CartController(IProductService productService, ICartService cartService, IMapper mapper, IAppUserService appUserService)
+        public CartController(IProductService productService, ICartService cartService, IMapper mapper, IAppUserService appUserService, IHttpContextAccessor contextAccessor)
         {
             _productService = productService;
             _cartService = cartService;
             _mapper = mapper;
             _appUserService = appUserService;
+            _contextAccessor = contextAccessor;
         }
 
         //public IActionResult Index()
@@ -36,6 +42,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             var UserId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
             var userResponse = await _appUserService.GetByIdAsync<AppUserListDto>(UserId);
             ViewBag.UserId = UserId;
+            
             return View(_cartService.List());
         }
        

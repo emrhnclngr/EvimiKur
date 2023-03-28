@@ -81,12 +81,12 @@ namespace EvimiKur.UI.Controllers
         }
 
 
-        public IActionResult LogIn()
+        public IActionResult SignIn()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> LogIn(AppUserLoginDto dto)
+        public async Task<IActionResult> SignIn(AppUserLoginDto dto)
         {
             var result = await _appUserService.CheckUserAsync(dto);
             if (result.ResponseType == Common.ResponseType.Success)
@@ -96,6 +96,7 @@ namespace EvimiKur.UI.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,dto.Username)
+                    
                 };
 
                 if (roleResult.ResponseType == Common.ResponseType.Success)

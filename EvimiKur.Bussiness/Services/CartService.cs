@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,8 @@ namespace EvimiKur.Bussiness.Services
 
         public void Add(ProductListDto product)
         {
-            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+            var userId = int.Parse((_contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet"+ userId);
 
             if (productList == null)
             {
@@ -63,19 +65,21 @@ namespace EvimiKur.Bussiness.Services
                 }
             }
 
-            _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+            _contextAccessor.HttpContext.Response.SetObject("sepet"+userId, productList);
         }
 
         public List<ProductListDto> List()
         {
-            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+            var userId = int.Parse((_contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet" + userId);
 
             return productList;
         }
 
         public void Remove(int productId)
         {
-            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+            var userId = int.Parse((_contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet" + userId);
 
             if (productList != null)
             {
@@ -84,13 +88,14 @@ namespace EvimiKur.Bussiness.Services
                 {
                     var product = new ProductListDto();
                     productList.Remove(productToRemove);
-                    _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+                    _contextAccessor.HttpContext.Response.SetObject("sepet" +userId, productList);
                 }
             }
         }
         public void IncreaseCartCookie(int id)
         {
-            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+            var userId = int.Parse((_contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet" + userId);
 
             if (productList != null)
             {
@@ -109,11 +114,12 @@ namespace EvimiKur.Bussiness.Services
                 }
             }
 
-            _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+            _contextAccessor.HttpContext.Response.SetObject("sepet" + userId, productList);
         }
         public void DecreaseCartCookie(int id)
         {
-            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet");
+            var userId = int.Parse((_contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+            var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet" + userId);
 
             if (productList != null)
             {
@@ -130,7 +136,7 @@ namespace EvimiKur.Bussiness.Services
                 }
             }
 
-            _contextAccessor.HttpContext.Response.SetObject("sepet", productList);
+            _contextAccessor.HttpContext.Response.SetObject("sepet" + userId, productList);
         }
        
 

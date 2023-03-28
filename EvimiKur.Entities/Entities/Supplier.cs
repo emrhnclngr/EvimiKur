@@ -21,8 +21,12 @@ namespace EvimiKur.Entities.Entities
         public string PostalCode { get; set; }
 
         //Relational Property
+
+        //public List<Order> Orders { get; set; }
+
         
-        public List<Order> Orders { get; set; }
+
+
 
 
     }

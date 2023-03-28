@@ -14,11 +14,12 @@ namespace EvimiKur.DataAccess.Configuration
         public void Configure(EntityTypeBuilder<Order> builder)
         {
 
-            builder.Property(x => x.OrderDate).HasDefaultValueSql("getdate()").IsRequired();
+            //builder.Property(x => x.OrderDate).HasDefaultValueSql("getdate()").IsRequired();
             
 
-            builder.HasOne(x => x.Supplier).WithMany(x => x.Orders).HasForeignKey(x => x.SupplierId);
+            //builder.HasOne(x => x.Supplier).WithMany(x => x.Orders).HasForeignKey(x => x.SupplierId);
             builder.HasOne(x => x.AppUser).WithMany(x => x.Orders).HasForeignKey(x => x.AppUserId);
+           
 
             
 

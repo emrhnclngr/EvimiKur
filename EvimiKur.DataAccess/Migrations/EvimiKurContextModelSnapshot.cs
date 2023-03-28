@@ -51,14 +51,14 @@ namespace EvimiKur.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 3, 27, 6, 58, 42, 518, DateTimeKind.Local).AddTicks(1857),
+                            CreatedDate = new DateTime(2023, 3, 29, 0, 25, 27, 587, DateTimeKind.Local).AddTicks(5719),
                             Definition = "Admin",
                             Status = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 3, 27, 6, 58, 42, 519, DateTimeKind.Local).AddTicks(4636),
+                            CreatedDate = new DateTime(2023, 3, 29, 0, 25, 27, 588, DateTimeKind.Local).AddTicks(7348),
                             Definition = "Member",
                             Status = false
                         });
@@ -247,20 +247,11 @@ namespace EvimiKur.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Confirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -268,31 +259,8 @@ namespace EvimiKur.DataAccess.Migrations
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Freight")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ShipVia")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
-
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -300,8 +268,6 @@ namespace EvimiKur.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("SupplierId");
 
                     b.ToTable("Orders");
                 });
@@ -573,15 +539,7 @@ namespace EvimiKur.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EvimiKur.Entities.Entities.Supplier", "Supplier")
-                        .WithMany("Orders")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AppUser");
-
-                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("EvimiKur.Entities.Entities.OrderDetail", b =>
@@ -678,11 +636,6 @@ namespace EvimiKur.DataAccess.Migrations
             modelBuilder.Entity("EvimiKur.Entities.Entities.Product", b =>
                 {
                     b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("EvimiKur.Entities.Entities.Supplier", b =>
-                {
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

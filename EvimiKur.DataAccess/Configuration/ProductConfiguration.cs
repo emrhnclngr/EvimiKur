@@ -24,6 +24,7 @@ namespace EvimiKur.DataAccess.Configuration
 
             builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
             builder.HasOne(x => x.Dealer).WithMany(x => x.Products).HasForeignKey(x => x.DealerId);
+            
         }
     }
 }

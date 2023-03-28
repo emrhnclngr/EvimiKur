@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace EvimiKur.Entities.Entities
         //Relational Property
         public List<AppUserRole> AppUserRoles { get; set; }
         public List<Order> Orders { get; set; }
+        
 
 
     }

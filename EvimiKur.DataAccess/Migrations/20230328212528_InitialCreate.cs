@@ -145,6 +145,30 @@ namespace EvimiKur.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Confirmed = table.Column<bool>(type: "bit", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AppUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AppUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubCategories",
                 columns: table => new
                 {
@@ -207,50 +231,28 @@ namespace EvimiKur.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "ProductReturns",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
-                    ShipVia = table.Column<int>(type: "int", nullable: false),
-                    Freight = table.Column<int>(type: "int", nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Confirmed = table.Column<bool>(type: "bit", nullable: false),
-                    AppUserId = table.Column<int>(type: "int", nullable: false),
-                    DealerId = table.Column<int>(type: "int", nullable: true),
-                    SupplierId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_ProductReturns", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_AppUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AppUsers",
+                        name: "FK_ProductReturns_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Dealers_DealerId",
-                        column: x => x.DealerId,
-                        principalTable: "Dealers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Orders_Suppliers_SupplierId",
-                        column: x => x.SupplierId,
-                        principalTable: "Suppliers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -286,40 +288,15 @@ namespace EvimiKur.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProductReturns",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductReturns", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductReturns_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.InsertData(
+                table: "AppRoles",
+                columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
+                values: new object[] { 1, new DateTime(2023, 3, 29, 0, 25, 27, 587, DateTimeKind.Local).AddTicks(5719), "Admin", null, false, null });
 
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 1, new DateTime(2023, 3, 27, 6, 3, 19, 99, DateTimeKind.Local).AddTicks(9957), "Admin", null, false, null });
-
-            migrationBuilder.InsertData(
-                table: "AppRoles",
-                columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 2, new DateTime(2023, 3, 27, 6, 3, 19, 101, DateTimeKind.Local).AddTicks(203), "Member", null, false, null });
+                values: new object[] { 2, new DateTime(2023, 3, 29, 0, 25, 27, 588, DateTimeKind.Local).AddTicks(7348), "Member", null, false, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppUserRoles_AppRoleId_AppUserId",
@@ -346,16 +323,6 @@ namespace EvimiKur.DataAccess.Migrations
                 name: "IX_Orders_AppUserId",
                 table: "Orders",
                 column: "AppUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_DealerId",
-                table: "Orders",
-                column: "DealerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_SupplierId",
-                table: "Orders",
-                column: "SupplierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductReturns_OrderId",
@@ -393,6 +360,9 @@ namespace EvimiKur.DataAccess.Migrations
                 name: "SubCategories");
 
             migrationBuilder.DropTable(
+                name: "Suppliers");
+
+            migrationBuilder.DropTable(
                 name: "AppRoles");
 
             migrationBuilder.DropTable(
@@ -405,13 +375,10 @@ namespace EvimiKur.DataAccess.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "AppUsers");
-
-            migrationBuilder.DropTable(
                 name: "Dealers");
 
             migrationBuilder.DropTable(
-                name: "Suppliers");
+                name: "AppUsers");
         }
     }
 }

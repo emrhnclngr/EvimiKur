@@ -43,6 +43,9 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddTransient<IValidator<DealerUpdateDto>, DealerUpdateDtoValidator>();
             services.AddTransient<IValidator<OrderCreateDto>, OrderCreateDtoValidator>();
             services.AddTransient<IValidator<OrderUpdateDto>, OrderUpdateDtoValidator>();
+            
+            
+
 
 
 
@@ -52,6 +55,7 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddScoped<IDealerService, DealerService>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<IOrderService, OrderService>();
+            
             
 
 

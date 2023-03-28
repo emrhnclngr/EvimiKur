@@ -12,7 +12,7 @@ namespace EvimiKur.Entities.Entities
 {
     public class Product : BaseEntity
     {
-        
+
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }

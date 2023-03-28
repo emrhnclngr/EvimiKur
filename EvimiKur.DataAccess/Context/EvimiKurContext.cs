@@ -29,6 +29,7 @@ namespace EvimiKur.DataAccess.Context
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new SupplierConfiguration());
             modelBuilder.ApplyConfiguration(new DealerConfiguration());
+           
 
           
         }
@@ -45,6 +46,7 @@ namespace EvimiKur.DataAccess.Context
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Dealer> Dealers { get; set; }
+        
 
 
     }
