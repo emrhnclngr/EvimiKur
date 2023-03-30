@@ -1,4 +1,5 @@
-﻿using EvimiKur.Dtos;
+﻿using EvimiKur.Common.Enums;
+using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace EvimiKur.Bussiness.Interfaces
 {
     public interface IDealerService : IService<DealerCreateDto,DealerUpdateDto,DealerListDto,Dealer>
     {
-        Task<List<DealerListDto>> GetListActiveDealers();
-        Task<List<DealerListDto>> GetList();
+        //Task<List<DealerListDto>> GetListActiveDealers();
+        Task<List<DealerListDto>> GetList(StatusType type);
     }
 }

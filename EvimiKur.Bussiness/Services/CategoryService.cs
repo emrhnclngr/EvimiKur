@@ -25,22 +25,22 @@ namespace EvimiKur.Bussiness.Services
             _uow = uow;
             _mapper = mapper;
         }
-        public async Task<List<CategoryListDto>> GetListActiveCategory()
+        public async Task<List<CategoryListDto>> GetList(StatusType type)
         {
             var query = _uow.GetRepository<Category>().GetQuery();
 
-            var list = await query.Where(x => x.Status == true).ToListAsync();
+            var list = await query.Where(x => x.Status == (int)type).ToListAsync();
 
             return _mapper.Map<List<CategoryListDto>>(list);
         }
-        public async Task<List<CategoryListDto>> GetListInActiveCategory()
-        {
-            var query = _uow.GetRepository<Category>().GetQuery();
+        //public async Task<List<CategoryListDto>> GetListInActiveCategory()
+        //{
+        //    var query = _uow.GetRepository<Category>().GetQuery();
 
-            var list = await query.Where(x => x.Status == false).ToListAsync();
+        //    var list = await query.Where(x => x.Status == false).ToListAsync();
 
-            return _mapper.Map<List<CategoryListDto>>(list);
-        }
+        //    return _mapper.Map<List<CategoryListDto>>(list);
+        //}
 
 
 

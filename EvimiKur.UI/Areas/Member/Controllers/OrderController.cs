@@ -2,6 +2,7 @@
 using EvimiKur.Bussiness.Interfaces;
 using EvimiKur.Bussiness.Services;
 using EvimiKur.Common;
+using EvimiKur.Common.Enums;
 using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
 using Microsoft.AspNetCore.Http;
@@ -58,10 +59,11 @@ namespace EvimiKur.UI.Areas.Member.Controllers
                 //order.AppUser = userResponse.Data;
 
             }
+            
 
             foreach (var item in _cartService.List())
             {
-
+                 
                 var response = await _productService.GetByIdAsync<Product>(item.Id);
                 if (response.ResponseType == ResponseType.Success)
                 {
@@ -75,6 +77,8 @@ namespace EvimiKur.UI.Areas.Member.Controllers
                     });
                 }
             }
+            
+            
             await _orderService.CreateAsync(order);
 
             var productList = _contextAccessor.HttpContext.Request.GetObject<List<ProductListDto>>("sepet" + userId);

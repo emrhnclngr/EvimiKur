@@ -1,4 +1,5 @@
 ﻿using EvimiKur.Common;
+using EvimiKur.Common.Enums;
 using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
 using System;
@@ -11,7 +12,7 @@ namespace EvimiKur.Bussiness.Interfaces
 {
     public interface ICategoryService : IService<CategoryCreateDto, CategoryUpdateDto, CategoryListDto,Category>
     {
-        Task<List<CategoryListDto>> GetListActiveCategory();
-        Task<List<CategoryListDto>> GetListInActiveCategory();
+        Task<List<CategoryListDto>> GetList(StatusType type);
+        //Task<List<CategoryListDto>> GetListInActiveCategory();
     }
 }

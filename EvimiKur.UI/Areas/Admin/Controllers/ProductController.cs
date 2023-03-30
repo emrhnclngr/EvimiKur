@@ -96,7 +96,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             //var products = await _productService.GetCategoryWithProduct();
-            var products = await _productService.GetListActiveProduct();
+            var products = await _productService.GetList(StatusType.Active);
             return View(products);
 
             //var response = await _productService.GetAllAsync();
@@ -109,7 +109,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         }
         public async Task<IActionResult> PassiveProductList()
         {
-            var products = await _productService.GetListInActiveProduct();
+            var products = await _productService.GetList(StatusType.Passive);
             return View(products);
 
         }
@@ -117,8 +117,8 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         {
           
             var response = await _productService.GetByIdAsync<ProductUpdateDto>(id);
-            var categories = await _categoryService.GetListActiveCategory();
-            var dealers = await _dealerService.GetListActiveDealers();
+            var categories = await _categoryService.GetList(StatusType.Active);
+            var dealers = await _dealerService.GetList(StatusType.Active);
             ViewData["Categories"] = categories.Select(x => new SelectListItem()
             {
                 Text = x.Name,
@@ -156,8 +156,8 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             var response = await _productService.UpdateAsync(dto);
 
 
-            var categories = await _categoryService.GetListActiveCategory();
-            var dealers = await _dealerService.GetListActiveDealers();
+            var categories = await _categoryService.GetList(StatusType.Active);
+            var dealers = await _dealerService.GetList(StatusType.Active);
             ViewData["Categories"] = categories.Select(x => new SelectListItem()
             {
                 Text = x.Name,

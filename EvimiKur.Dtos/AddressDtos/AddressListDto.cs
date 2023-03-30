@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EvimiKur.Dtos.SupplierDtos
 {
-    public class SupplierListDto :IDto
+    public class AddressListDto :IDto
     {
         public string CompanyName { get; set; }
         public string ContactName { get; set; }

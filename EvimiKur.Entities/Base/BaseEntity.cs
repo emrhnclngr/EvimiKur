@@ -15,6 +15,6 @@ namespace EvimiKur.Entities.Base
 
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
-        public bool Status { get; set; }
+        public int Status { get; set; }
     }
 }

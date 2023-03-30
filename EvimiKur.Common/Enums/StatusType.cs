@@ -8,8 +8,17 @@ namespace EvimiKur.Common.Enums
 {
     public enum StatusType
     {
-        Active = 2,
-        Passive = 3,
+        Passive = 0,
+        Active = 1,
+        Pending = 3,
 
     }
+    //public class Type
+    //{
+    //    public static void Main()
+    //    {
+    //        int statusValue = 0;
+    //        string statusName = Enum.GetName(typeof(StatusType),statusValue);
+    //    }
+    //}
 }

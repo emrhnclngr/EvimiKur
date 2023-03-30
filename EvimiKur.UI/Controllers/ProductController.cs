@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EvimiKur.Bussiness.Interfaces;
 using EvimiKur.Bussiness.Services;
+using EvimiKur.Common.Enums;
 using EvimiKur.DataAccess.Context;
 using EvimiKur.DataAccess.UnitOfWork;
 using EvimiKur.Dtos;
@@ -33,7 +34,7 @@ namespace EvimiKur.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetListActiveProduct();
+            var products = await _productService.GetList(StatusType.Active);
            
             return View(products);
         }

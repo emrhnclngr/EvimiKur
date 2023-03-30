@@ -27,7 +27,9 @@ namespace EvimiKur.Entities.Entities
         //Relational Property
         public List<AppUserRole> AppUserRoles { get; set; }
         public List<Order> Orders { get; set; }
-        
+
+        public List<Address> Addresses { get; set; }
+
 
 
     }

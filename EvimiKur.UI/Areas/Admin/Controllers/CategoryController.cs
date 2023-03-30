@@ -52,13 +52,13 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         {
 
             //var response = await _categoryService.GetAllAsync();
-            var response = await _categoryService.GetListActiveCategory();
+            var response = await _categoryService.GetList(Common.Enums.StatusType.Active);
             return View(response);
             //return this.ResponseView(response);
         }
         public async Task<IActionResult> PassiveCategoryList()
         {
-            var response = await _categoryService.GetListInActiveCategory();
+            var response = await _categoryService.GetList(Common.Enums.StatusType.Passive);
             return View(response);
         }
         public async Task<IActionResult> Update(int id)

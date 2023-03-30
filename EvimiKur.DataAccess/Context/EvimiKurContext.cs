@@ -27,8 +27,9 @@ namespace EvimiKur.DataAccess.Context
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductReturnConfiguration());
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new SupplierConfiguration());
+            modelBuilder.ApplyConfiguration(new AddressConfiguration());
             modelBuilder.ApplyConfiguration(new DealerConfiguration());
+            modelBuilder.ApplyConfiguration(new AddressConfiguration());
            
 
           
@@ -44,9 +45,10 @@ namespace EvimiKur.DataAccess.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductReturn> ProductReturns { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Address> Suppliers { get; set; }
         public DbSet<Dealer> Dealers { get; set; }
-        
+        public DbSet<Address> Addresses { get; set; }
+
 
 
     }

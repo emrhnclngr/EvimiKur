@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using EvimiKur.Bussiness.Interfaces;
+using EvimiKur.Common.Enums;
 using EvimiKur.DataAccess.UnitOfWork;
-using EvimiKur.Dtos;
 using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
 using FluentValidation;
@@ -28,15 +28,15 @@ namespace EvimiKur.Bussiness.Services
         }
 
 
-        public async Task<List<DealerListDto>> GetListActiveDealers()
-        {
-            var query = _uow.GetRepository<Dealer>().GetQuery();
+        //public async Task<List<DealerListDto>> GetList(StatusType type)
+        //{
+        //    var query = _uow.GetRepository<Dealer>().GetQuery();
 
-            var list = await query.Include(x => x.Products).ThenInclude(x=>x.Category).Where(x => x.Status == true).ToListAsync();
+        //    var list = await query.Include(x => x.Products).ThenInclude(x=>x.Category).Where(x => x.Status == (int)type).ToListAsync();
 
-            return _mapper.Map<List<DealerListDto>>(list);
-        }
-        public async Task<List<DealerListDto>> GetList()
+        //    return _mapper.Map<List<DealerListDto>>(list);
+        //}
+        public async Task<List<DealerListDto>> GetList(StatusType type)
         {
             var query = _uow.GetRepository<Dealer>().GetQuery();
 

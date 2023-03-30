@@ -1,4 +1,5 @@
-﻿using EvimiKur.Dtos;
+﻿using EvimiKur.Common.Enums;
+using EvimiKur.Dtos;
 using EvimiKur.Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace EvimiKur.Bussiness.Interfaces
 {
     public interface IOrderService : IService<OrderCreateDto, OrderUpdateDto,OrderListDto,Order>
     {
+        Task<List<OrderListDto>> GetList(StatusType type);
     }
 }

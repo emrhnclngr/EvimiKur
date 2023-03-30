@@ -40,7 +40,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         public async Task<IActionResult> List()
         {
             
-            var dealers = await _productService.GetListActiveProduct();
+            var dealers = await _productService.GetList(StatusType.Active);
             return View(dealers);
             
         }
