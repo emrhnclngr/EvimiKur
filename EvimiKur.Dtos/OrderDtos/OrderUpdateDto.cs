@@ -23,5 +23,7 @@ namespace EvimiKur.Dtos
         public bool Confirmed { get; set; }
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+        
+
     }
 }

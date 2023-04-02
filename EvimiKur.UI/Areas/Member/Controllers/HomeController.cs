@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EvimiKur.Bussiness.Interfaces;
+using EvimiKur.Bussiness.Services;
 using EvimiKur.DataAccess.UnitOfWork;
 using EvimiKur.Dtos;
 using EvimiKur.Dtos.Interfaces;
@@ -21,16 +22,18 @@ namespace EvimiKur.Areas.Member.Controllers
     [Area("Member")]
     public class HomeController : Controller
     {
-       private readonly IAppUserService _appUserService;
-       private readonly IUow _uow;
-       private readonly IMapper _mapper;
-       
+        private readonly IAppUserService _appUserService;
+        
+        private readonly IUow _uow;
+        private readonly IMapper _mapper;
+
 
         public HomeController(IAppUserService appUserService, IUow uow, IMapper mapper)
         {
             _appUserService = appUserService;
             _uow = uow;
             _mapper = mapper;
+            
         }
 
         [Authorize(Roles = "Member")]
@@ -42,7 +45,7 @@ namespace EvimiKur.Areas.Member.Controllers
             return this.ResponseView(userResponse);
 
         }
-        
+
         public async Task<IActionResult> Update(int id)
         {
 
@@ -56,7 +59,7 @@ namespace EvimiKur.Areas.Member.Controllers
             var response = await _appUserService.UpdateAsync(dto);
             return this.ResponseRedirectAction(response, "Index");
         }
-
+        
 
     }
 }

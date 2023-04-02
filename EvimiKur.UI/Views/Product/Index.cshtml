@@ -11,7 +11,7 @@
     <div class="alert alert-success d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill" /></svg>
         <div>
-            Ekledin la gardaş!!! @TempData["info"].ToString()
+            @TempData["info"].ToString()
         </div>
     </div>
 
@@ -49,7 +49,14 @@
                     <p class="card-text">@item.UnitPrice.ToString("C2")</p>
                 </div>
                 <div class="card-footer">
-                    <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="SignIn">Add to Cart</a>
+                    }
                 </div>
             </div>
         </div>

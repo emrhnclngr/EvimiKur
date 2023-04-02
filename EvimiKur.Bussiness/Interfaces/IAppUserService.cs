@@ -18,6 +18,7 @@ namespace EvimiKur.Bussiness.Interfaces
         Task<IResponse<List<AppRoleListDto>>> GetRolesByUserIdAsync(int userId);
         Task<IResponse<List<AppUserLoginDto>>> GeyByLoginUserId(int id);
         //Task<List<AppUserListDto>> GetList(RoleType type);
+        
 
 
     }

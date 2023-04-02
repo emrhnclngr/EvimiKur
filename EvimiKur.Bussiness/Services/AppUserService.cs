@@ -107,7 +107,14 @@ namespace EvimiKur.Bussiness.Services
 
         //    return _mapper.Map<List<AppUserListDto>>(list);
         //}
+        //public async Task<List<AppUserListDto>> GetAddress()
+        //{
+        //    var query = _uow.GetRepository<AppUser>().GetQuery();
+        //    var list = await query.Include(x=>x.Addresses).ToListAsync();
+        //    return _mapper.Map<List<AppUserListDto>>(list);
 
+        //}
+        
 
 
     }

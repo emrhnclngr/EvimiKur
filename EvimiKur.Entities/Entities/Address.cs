@@ -9,7 +9,8 @@ namespace EvimiKur.Entities.Entities
 {
     public class Address : BaseEntity
     {
-  
+
+        public string AddressName { get; set; }
         public string City { get; set; }
         public string Region { get; set; }
         public string AddressDetail { get; set; }
@@ -17,6 +18,7 @@ namespace EvimiKur.Entities.Entities
 
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+        
 
 
 

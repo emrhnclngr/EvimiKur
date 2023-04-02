@@ -34,7 +34,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         {
 
             var response = await _dealerService.CreateAsync(dto);
-            return this.ResponseRedirectAction(response, "List");
+            return this.ResponseRedirectAction(response, "Index","Home");
         }
 
         public async Task<IActionResult> List()

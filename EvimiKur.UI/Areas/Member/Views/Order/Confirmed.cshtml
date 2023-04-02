@@ -38,25 +38,26 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                @*<th>Image</th>*@
                                 <th>User</th>
                                 <th>Status</th>
                                 <th>Address Detail</th>
                                 <th>Details</th>
                                 <th>Unit Price</th>
                                 <th>Process</th>
-                                
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-
+                                <input type="hidden" asp-for="@item.Id"/>
                                 <tr>
                                     <td>@item.Id</td>
                                     @*<td>
-                                <img src="/media/products/@item.Image" width="100">
-                                </td>*@
+                                        <img src="/media/products/@item.Image" width="100">
+                                    </td>*@
                                     <td>@item.AppUser.Firstname @item.AppUser.Surname</td>
                                     <td>@Enum.GetName(typeof(StatusType),item.Status)</td>
                                     <td>
@@ -69,13 +70,10 @@
                                         <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" class="btn btn-outline-warning btn-sm">Order Details</a>
                                     </td>
                                     <td>
-                                       @item.Price.ToString("C2")
+                                        @item.Price.ToString("C2")
                                     </td>
 
                                     <td>
-                                        <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" asp-route-type="@((int)StatusType.Active)" class="btn btn-outline-success btn-sm">Approve</a>
-                                    
-                                    
                                         <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" asp-route-type="@((int)StatusType.Passive)" class="btn btn-outline-danger btn-sm confirmDeletion">Reject</a>
                                     </td>
                                 </tr>
@@ -85,7 +83,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
+                <a asp-area="Member" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
             </div>
         </div>
     </div>

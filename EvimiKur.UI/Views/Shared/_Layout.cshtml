@@ -1,4 +1,7 @@
-﻿
+﻿@using EvimiKur.Bussiness.CustomExtensions
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Http
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +40,7 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-sm-12">
-                        <div class="right-nav mt-5" >
+                        <div class="right-nav mt-5">
                             <div class="login-sr">
                                 <div class="collapse navbar-collapse" id="navbarResponsive">
                                     <ul class="login-signup">
@@ -54,12 +57,23 @@
 
                                                                 </li>
                                                                 <li>
+                                                                    @{
+                                                                        var userId = int.Parse((Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+                                                                        var productList = Context.Request.GetObject<List<ProductListDto>>("sepet" + userId);
+                                                                        var productCount = productList?.Count ?? 0;
+                                                                    }
                                                                     <a asp-area="Member" asp-controller="Cart" asp-action="List" class="nav-link nav-icon">
+                                                                        
+
                                                                         <i class="bi bi-bag-fill"></i>
-                                                                        <span class="badge bg-success badge-number">3</span>
+                                                                        @if(productCount >= 0)
+                                                                        {
+                                                                            <span class="badge bg-success badge-number">@productCount</span>
+                                                                        }
+                                                                       
                                                                     </a>
                                                                 </li>
-                                                                
+
 
                                                             </ul>
                                                         }
@@ -86,7 +100,7 @@
                                     </ul>
                                 </div>
                             </div>
-                           
+
                             <div class="nav-b hidden-xs">
                                 <div class="nav-box">
                                     <ul>
@@ -239,11 +253,11 @@
 
 
 
-    
+
 
 
     @RenderSection("script",false)
     @RenderSection("deneme",false)
-    
+
 </body>
 </html>

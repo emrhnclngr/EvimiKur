@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EvimiKur.DataAccess.Migrations
 {
     [DbContext(typeof(EvimiKurContext))]
-    [Migration("20230330000217_AddressAdded")]
-    partial class AddressAdded
+    [Migration("20230401234735_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,9 @@ namespace EvimiKur.DataAccess.Migrations
 
                     b.Property<string>("AddressDetail")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("AppUserId")
@@ -98,14 +101,14 @@ namespace EvimiKur.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 3, 30, 3, 2, 17, 227, DateTimeKind.Local).AddTicks(1922),
+                            CreatedDate = new DateTime(2023, 4, 2, 2, 47, 34, 655, DateTimeKind.Local).AddTicks(1735),
                             Definition = "Admin",
                             Status = 0
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 3, 30, 3, 2, 17, 228, DateTimeKind.Local).AddTicks(2049),
+                            CreatedDate = new DateTime(2023, 4, 2, 2, 47, 34, 656, DateTimeKind.Local).AddTicks(630),
                             Definition = "Member",
                             Status = 0
                         });

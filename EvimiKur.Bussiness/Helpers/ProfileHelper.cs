@@ -20,6 +20,7 @@ namespace EvimiKur.Business.Helpers
                 new AppRoleProfile(),
                 new DealerProfile(),
                 new OrderProfile(),
+                new AddressProfile(),
                 
             };
         }

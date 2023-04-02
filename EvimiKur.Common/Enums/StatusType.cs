@@ -13,12 +13,5 @@ namespace EvimiKur.Common.Enums
         Pending = 3,
 
     }
-    //public class Type
-    //{
-    //    public static void Main()
-    //    {
-    //        int statusValue = 0;
-    //        string statusName = Enum.GetName(typeof(StatusType),statusValue);
-    //    }
-    //}
+    
 }

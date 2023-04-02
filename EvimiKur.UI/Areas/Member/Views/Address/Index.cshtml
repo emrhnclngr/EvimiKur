@@ -1,8 +1,9 @@
-﻿@model List<OrderListDto>
+﻿@model List<AddressListDto>
 @{
     ViewData["Title"] = "List";
     //Layout = "_Layout";
 }
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
@@ -25,58 +26,44 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="~/css/create/js/scripts.js"></script>
+
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Product List</h4>
+                <h4 class="card-title">Category List</h4>
             </div>
-
             <div class="card-body">
                 <div class="table table-responsive table-responsive-sm">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>User</th>
-                                <th>Status</th>
+                                <th>Address Name</th>
+                                <th>City</th>
+                                <th>Region</th>
                                 <th>Address Detail</th>
-                                <th>Details</th>
-                                <th>Unit Price</th>
-                                <th>Process</th>
-                                
-                                
+                                <th>Country</th>
+                                <th>Update</th>
+                                <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-
+                                <input type="hidden" asp-for="@item.AppUserId"/>
                                 <tr>
                                     <td>@item.Id</td>
-                                    @*<td>
-                                <img src="/media/products/@item.Image" width="100">
-                                </td>*@
-                                    <td>@item.AppUser.Firstname @item.AppUser.Surname</td>
-                                    <td>@Enum.GetName(typeof(StatusType),item.Status)</td>
+                                    <td>@item.AddressName</td>
+                                    <td>@item.City</td>
+                                    <td>@item.Region</td>
+                                    <td>@item.AddressDetail</td>
+                                    <td>@item.Country</td>
                                     <td>
-                                        @foreach (var address in item.AppUser.Addresses)
-                                        {
-                                            @((address.AddressDetail) + " / " + (address.City) + " / " + (address.Region) + " / " + (address.Country))
-                                        }
+                                        <a asp-controller="Address" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
                                     </td>
                                     <td>
-                                        <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" class="btn btn-outline-warning btn-sm">Order Details</a>
-                                    </td>
-                                    <td>
-                                       @item.Price.ToString("C2")
-                                    </td>
-
-                                    <td>
-                                        <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" asp-route-type="@((int)StatusType.Active)" class="btn btn-outline-success btn-sm">Approve</a>
-                                    
-                                    
-                                        <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" asp-route-type="@((int)StatusType.Passive)" class="btn btn-outline-danger btn-sm confirmDeletion">Reject</a>
+                                        <a asp-controller="Address" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
                                     </td>
                                 </tr>
                             }
@@ -85,8 +72,11 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
+                <a asp-controller="Address" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Address</a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
             </div>
         </div>
     </div>
+    
 </div>
+

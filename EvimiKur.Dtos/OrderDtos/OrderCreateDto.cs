@@ -29,6 +29,8 @@ namespace EvimiKur.Dtos
         public int Status { get; set; }
         public AppUserListDto AppUser { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
+        
+
 
     }
 }

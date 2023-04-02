@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EvimiKur.DataAccess.Migrations
 {
-    public partial class AddressAdded : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -94,6 +94,7 @@ namespace EvimiKur.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    AddressName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Region = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddressDetail = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -292,12 +293,12 @@ namespace EvimiKur.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 1, new DateTime(2023, 3, 30, 3, 2, 17, 227, DateTimeKind.Local).AddTicks(1922), "Admin", null, 0, null });
+                values: new object[] { 1, new DateTime(2023, 4, 2, 2, 47, 34, 655, DateTimeKind.Local).AddTicks(1735), "Admin", null, 0, null });
 
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "CreatedDate", "Definition", "DeleteDate", "Status", "UpdateDate" },
-                values: new object[] { 2, new DateTime(2023, 3, 30, 3, 2, 17, 228, DateTimeKind.Local).AddTicks(2049), "Member", null, 0, null });
+                values: new object[] { 2, new DateTime(2023, 4, 2, 2, 47, 34, 656, DateTimeKind.Local).AddTicks(630), "Member", null, 0, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_AppUserId",

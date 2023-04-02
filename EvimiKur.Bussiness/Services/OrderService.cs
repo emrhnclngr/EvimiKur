@@ -29,10 +29,25 @@ namespace EvimiKur.Bussiness.Services
         {
             var query = _uow.GetRepository<Order>().GetQuery();
 
-            var list = await query.Include(x => x.AppUser).Where(x=>x.Status == (int)type).ToListAsync();
+            var list = await query.Include(x => x.AppUser).ThenInclude(x=>x.Addresses).Include(x => x.OrderDetails).Where(x=>x.Status == (int)type).ToListAsync();
 
             return _mapper.Map<List<OrderListDto>>(list);
         }
+        public async Task<List<OrderListDto>> GetListAsync(int userId,StatusType type)
+        {
+            var query = _uow.GetRepository<Order>().GetQuery();
+            var list = await query.Include(x => x.OrderDetails).Include(x=>x.AppUser).ThenInclude(x=>x.Addresses).Where(x=>x.Status == (int)type && x.AppUserId == userId).ToListAsync();
+            return _mapper.Map<List<OrderListDto>>(list);
+        }
+        public async Task SetStatusAsync(int orderId, StatusType type)
+        {
+            var query = _uow.GetRepository<Order>().GetQuery();
+
+            var entity = await query.SingleOrDefaultAsync(x => x.Id == orderId);
+            entity.Status = (int)type;
+            await _uow.SaveChangesAsync();
+        }
+
 
     }
 }

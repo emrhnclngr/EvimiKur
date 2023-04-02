@@ -81,11 +81,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             var productList = _cartService.List();
             return RedirectToAction("List", "Cart");
         }
-        public async Task<IActionResult> Payment()
-        {
-            
-            return View();
-        }
+        
         
 
 

@@ -1,5 +1,6 @@
 ﻿using EvimiKur.Common.Enums;
 using EvimiKur.Dtos.Interfaces;
+using EvimiKur.Entities.Entities;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace EvimiKur.Dtos
         public Gender Gender { get; set; }
         public string Email { get; set; }
         public DateTime? BirthDate { get; set; }
+        public List<Address> Addresses { get; set; }
 
     }
 }

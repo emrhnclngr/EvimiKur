@@ -44,8 +44,15 @@
                                 <th>Details</th>
                                 <th>Unit Price</th>
                                 <th>Process</th>
+                                @*<th>UnitPrice</th>
+                                <th>Status</th>
+                                <th>Discontinued</th>
+                                <th>Category</th>
+                                <th>Dealer</th>
+                                <th>Quantity</th>
+                                <th>UnitInStock</th>
                                 
-                                
+                                <th>Remove</th>*@
                             </tr>
                         </thead>
                         <tbody>
@@ -69,14 +76,11 @@
                                         <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" class="btn btn-outline-warning btn-sm">Order Details</a>
                                     </td>
                                     <td>
-                                       @item.Price.ToString("C2")
+                                        @item.Price.ToString("C2")
                                     </td>
 
                                     <td>
                                         <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" asp-route-type="@((int)StatusType.Active)" class="btn btn-outline-success btn-sm">Approve</a>
-                                    
-                                    
-                                        <a asp-area="Admin" asp-controller="Order" asp-action="SetStatus" asp-route-orderId="@item.Id" asp-route-type="@((int)StatusType.Passive)" class="btn btn-outline-danger btn-sm confirmDeletion">Reject</a>
                                     </td>
                                 </tr>
                             }

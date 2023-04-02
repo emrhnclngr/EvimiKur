@@ -1,4 +1,5 @@
 ﻿using EvimiKur.Dtos.Interfaces;
+using EvimiKur.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace EvimiKur.Dtos.OrderDetailDtos
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
         public int Discount { get; set; }
+        
     }
 }

@@ -19,9 +19,10 @@ namespace EvimiKur.DataAccess.Configuration
 
             //builder.HasOne(x => x.Supplier).WithMany(x => x.Orders).HasForeignKey(x => x.SupplierId);
             builder.HasOne(x => x.AppUser).WithMany(x => x.Orders).HasForeignKey(x => x.AppUserId);
-           
-
             
+
+
+
 
         }
     }
