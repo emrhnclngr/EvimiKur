@@ -29,29 +29,34 @@
 <div class="container-fluid">
     <form asp-action="Create" asp-controller="Product" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-            <label>İlanın Başlığı:</label>
+            <label>Product Name</label>
             <input type="text" class="form-control" asp-for="@Model.ProductName" placeholder="Product Name" />
         </div>
         <div class="mb-3">
-            <label class="form-check-label">Aktif</label>
+            <label class="form-check-label">Status</label>
             <input type="checkbox" asp-for="@Model.Status" class="form-check-input"  />
         </div>
         <div class="mb-3">
-            <label>Birim başına miktar</label>
-            <textarea asp-for="@Model.Quantity" class="form-control" placeholder="Quantity Per Unit"></textarea>
+            <label class="form-check-label">Showroom</label>
+            <input type="checkbox" asp-for="@Model.ShowroomType" class="form-check-input" />
         </div>
         <div class="mb-3">
-            <label>Birim Fiyat</label>
+            <label>Quantity</label>
+            <textarea asp-for="@Model.Quantity" class="form-control" placeholder="Quantity"></textarea>
+        </div>
+        <div class="mb-3">
+            <label>UnitPrice</label>
             <textarea asp-for="@Model.UnitPrice" class="form-control" placeholder="Unit Price"></textarea>
         </div>
         <div class="mb-3">
-            <label>Stok</label>
+            <label>Stock</label>
             <textarea asp-for="@Model.UnitInStock" class="form-control" placeholder="Unit In Stock"></textarea>
         </div>
         <div class="mb-3">
-            <label class="form-check-label">İndirim</label>
-            <input type="checkbox" asp-for="@Model.Discontinued" class="form-check-input" />
+            <label>Description</label>
+            <textarea asp-for="@Model.Description" class="form-control" placeholder="Description"></textarea>
         </div>
+       
 
         <div class="form-group mb-3">
             <label asp-for="@Model.UploadImage" class="control-label">Choose The Image</label>

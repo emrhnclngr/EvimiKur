@@ -18,30 +18,59 @@
 }
 
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-sm-4">
-            <div class="card mb-2">
-                <div class="card-header">
-                    <img src="/media/products/@item.Image" class="card-img-top">
-                </div>
-                <div class="card-body">
-                    <p class="card-title">@item.ProductName</p>
-                    <p class="card-text">@item.UnitPrice.ToString("C2")</p>
-                </div>
-                <div class="card-footer">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
-                    }
-                    else
-                    {
-                        <a asp-area="" asp-controller="Account" asp-action="SignIn">Add to Cart</a>
-                    }
-                </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h4 class="mb-3">Categories</h4>
+            <div class="list-group" style="min-height: 300px;">
+                <a asp-controller="Product" asp-action="Index" class="list-group-item list-group-item-action active">
+                    All Products
+                </a>
+                @foreach (var item in Model)
+                {
+
+                    <a asp-controller="Product" asp-action="Index" asp-route-categoryId="@item.Category.Id" asp-route-type="@((int)StatusType.Active)" class="list-group-item list-group-item-action">@item.Category.Name</a>
+                }
+
             </div>
         </div>
-    }
-</div>
 
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-4">
+                        <div class="card mb-2">
+                            <div class="card-header">
+                                <img src="/media/products/@item.Image" class="card-img-top">
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title">@item.ProductName</p>
+                                <p class="card-text">@item.Description</p>
+                                <p class="card-text">@item.UnitPrice.ToString("C2")</p>
+                            </div>
+                            <div class="card-footer">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id" class="btn btn-block btn-dark">Add to Cart</a>
+                                }
+                                else
+                                {
+                                    <a asp-area="" asp-controller="Account" asp-action="SignIn" class="btn btn-block btn-dark">Add to Cart</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .list-group-item {
+        font-size: 18px;
+        height: 50px;
+        line-height: 50px;
+    }
+</style>

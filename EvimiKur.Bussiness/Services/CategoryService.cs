@@ -33,5 +33,6 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<CategoryListDto>>(list);
         }
+        
     }
 }

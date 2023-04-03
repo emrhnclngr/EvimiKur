@@ -1,7 +1,8 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     Layout = "_Layout";
-    
 }
+@model List<ProductListDto>
 
 <link href="~/css/assets/css/style.css" rel="stylesheet" />
 
@@ -33,7 +34,7 @@
     <div class="main-product">
         <div class="container">
 
-            <div  class="row clearfix">
+            <div class="row clearfix">
                 <div class="find-box">
                     <h1>Find your next product</h1>
                     <h4>It has never been easier.</h4>
@@ -41,87 +42,31 @@
 
                         <div style="margin-left: 400px" class="product-sh">
                             <div class="col-sm-6">
-                                <div  class="form-sh">
+                                <div class="form-sh">
                                     <input type="text" id="search" name="query" placeholder="Search something you love">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-sh"> <button type="submit" class="btn btn-outline-primary">Search</button></div>
                             </div>
-                            
+
                         </div>
 
                     </form>
                 </div>
             </div>
             <div class="row clearfix">
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a asp-area="" asp-controller="Product" asp-action="Index">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/1.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a href="~/themes/chamb/productpage.html">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/2.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a href="productpage.html">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/4.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a href="productpage.html">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/5.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a href="productpage.html">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/10.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a href="productpage.html">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/11.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a href="productpage.html">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/12.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-3">
-                    <a href="productpage.html">
-                        <div class="box-img">
-                            <h4>Product</h4>
-                            <img src="~/images/product/13.png" alt="" />
-                        </div>
-                    </a>
-                </div>
-                <div class="categories_link">
-                    <a href="#">Browse all categories here</a>
-                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-sm-6 col-md-3">
+                        <a asp-area="" asp-controller="Product" asp-action="Page" asp-route-id="@item.Id">
+                            <div class="box-img">
+                                <img src="~/media/products/@item.Image" />
+                                <h4>@item.ProductName</h4>
+                            </div>
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -285,149 +230,31 @@
 </div>
 <div class="products">
     <div class="main-products">
-        <h2>TRENDING PRODUCTS ON CHAMB</h2>
+        <h2>TRENDING PRODUCTS ON EvimiKur</h2>
         <div class="product-slidr">
             <div class="slider">
-                <div>
-                    <div class="prod-box">
-                        <div class="prod-i">
-                            <img src="~/images/tr1.png" alt="#" />
-                        </div>
-                        <div class="prod-dit clearfix">
-                            <div class="dit-t clearfix">
-                                <div class="left-ti">
-                                    <h4>Table with Lights</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                </div>
-                                <a href="#">$1220</a>
+                @foreach (var item in Model)
+                {
+                    <div>
+                        <div class="prod-box">
+                            <div class="prod-i">
+                                <img src="~/media/products/@item.Image" alt="#" />
                             </div>
-                            <div class="dit-btn clearfix">
-                                <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
-                                <a class="thi" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
+                            <div class="prod-dit clearfix">
+                                <div class="dit-t clearfix">
+                                    <div class="left-ti">
+                                        <h4>@item.ProductName</h4>
+                                        <p>With <span>EvimiKur</span> Assurance </p>
+                                    </div>
+                                    <a href="#">@item.UnitPrice.ToString("C2")</a>
+                                </div>
+                                <div class="dit-btn clearfix">
+                                    <a class="thi" asp-area="" asp-controller="Product" asp-action="Page" asp-route-id="@item.Id"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div class="prod-box">
-                        <div class="prod-i">
-                            <img src="~/images/tr2.png" alt="#" />
-                        </div>
-                        <div class="prod-dit clearfix">
-                            <div class="dit-t clearfix">
-                                <div class="left-ti">
-                                    <h4>Treehouse Bed</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                </div>
-                                <a href="#">$1220</a>
-                            </div>
-                            <div class="dit-btn clearfix">
-                                <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
-                                <a class="thi" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="prod-box">
-                        <div class="prod-i">
-                            <img src="~/images/tr3.png" alt="#" />
-                        </div>
-                        <div class="prod-dit clearfix">
-                            <div class="dit-t clearfix">
-                                <div class="left-ti">
-                                    <h4>Wood Sofaplatform</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                </div>
-                                <a href="#">$1220</a>
-                            </div>
-                            <div class="dit-btn clearfix">
-                                <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
-                                <a class="thi" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="prod-box">
-                        <div class="prod-i">
-                            <img src="~/images/tr4.png" alt="#" />
-                        </div>
-                        <div class="prod-dit clearfix">
-                            <div class="dit-t clearfix">
-                                <div class="left-ti">
-                                    <h4>Wall Sticker</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                </div>
-                                <a href="#">$1220</a>
-                            </div>
-                            <div class="dit-btn clearfix">
-                                <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
-                                <a class="thi" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="prod-box">
-                        <div class="prod-i">
-                            <img src="~/images/tr1.png" alt="#" />
-                        </div>
-                        <div class="prod-dit clearfix">
-                            <div class="dit-t clearfix">
-                                <div class="left-ti">
-                                    <h4>Treehouse Bed</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                </div>
-                                <a href="#">$1220</a>
-                            </div>
-                            <div class="dit-btn clearfix">
-                                <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
-                                <a class="thi" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="prod-box">
-                        <div class="prod-i">
-                            <img src="~/images/tr2.png" alt="#" />
-                        </div>
-                        <div class="prod-dit clearfix">
-                            <div class="dit-t clearfix">
-                                <div class="left-ti">
-                                    <h4>Treehouse Bed</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                </div>
-                                <a href="#">$1220</a>
-                            </div>
-                            <div class="dit-btn clearfix">
-                                <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
-                                <a class="thi" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="prod-box">
-                        <div class="prod-i">
-                            <img src="~/images/tr3.png" alt="#" />
-                        </div>
-                        <div class="prod-dit clearfix">
-                            <div class="dit-t clearfix">
-                                <div class="left-ti">
-                                    <h4>Treehouse Bed</h4>
-                                    <p>By <span>Beko</span> under <span>Lights</span></p>
-                                </div>
-                                <a href="#">$1220</a>
-                            </div>
-                            <div class="dit-btn clearfix">
-                                <a class="wis" href="#"><i class="fa fa-star" aria-hidden="true"></i> Save to wishlist </a>
-                                <a class="thi" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like this</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>

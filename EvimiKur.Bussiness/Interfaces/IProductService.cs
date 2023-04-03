@@ -17,6 +17,7 @@ namespace EvimiKur.Bussiness.Interfaces
         Task<List<ProductListDto>> GetList();
         Task<List<ProductListDto>> GetList(StatusType type);
         Task<List<ProductListDto>> Search(string query);
-
+        Task<List<ProductListDto>> GetListShowroom();
+        Task<List<ProductListDto>> GetProductByCategories(int categoryId, StatusType type);
     }
 }

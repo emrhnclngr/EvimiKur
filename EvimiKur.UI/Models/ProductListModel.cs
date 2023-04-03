@@ -11,7 +11,7 @@ namespace EvimiKur.UI.Models
         public decimal UnitPrice { get; set; }
         public int UnitInStock { get; set; }
         public bool Status { get; set; }
-        public bool Discontinued { get; set; }
+        public bool ShowroomType { get; set; }
         public string Image { get; set; }
         public IFormFile UploadImage { get; set; }
 

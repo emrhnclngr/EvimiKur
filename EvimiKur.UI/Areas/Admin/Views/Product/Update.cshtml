@@ -30,30 +30,34 @@
         <input type="hidden" asp-for="@Model.Id" />
         <input type="hidden" asp-for="Image" />
         <div class="mb-3">
-            <label>İlanın Başlığı:</label>
+            <label>Product Name</label>
             <input type="text" class="form-control" asp-for="@Model.ProductName" />
         </div>
         <div class="mb-3">
-            <label class="form-check-label">Aktif</label>
+            <label class="form-check-label">Status</label>
             <input type="checkbox" asp-for="@Model.Status" class="form-check-input" />
         </div>
         <div class="mb-3">
-            <label>Birim başına miktar</label>
+            <label class="form-check-label">Showroom</label>
+            <input type="checkbox" asp-for="@Model.ShowroomType" class="form-check-input" />
+        </div>
+        <div class="mb-3">
+            <label>Quantity</label>
             <textarea asp-for="@Model.Quantity" class="form-control"></textarea>
         </div>
         <div class="mb-3">
-            <label>Birim Fiyat</label>
+            <label>Unit Price</label>
             <textarea asp-for="@Model.UnitPrice" class="form-control"></textarea>
         </div>
         <div class="mb-3">
-            <label>Stok</label>
+            <label>Stock</label>
             <textarea asp-for="@Model.UnitInStock" class="form-control"></textarea>
         </div>
         <div class="mb-3">
-            <label class="form-check-label">İndirim</label>
-            <input type="checkbox" asp-for="@Model.Discontinued" class="form-check-input" />
+            <label>Description</label>
+            <textarea asp-for="@Model.Description" class="form-control" placeholder="Description"></textarea>
         </div>
-
+        
         <div class="form-group mb-3">
             <label class="control-label"></label>
             <img src="~/media/products/@Model.Image" style="object-fit: contain; max-width: 200px; max-height: 150px;" />
@@ -66,7 +70,7 @@
 
             <select class="form-select" asp-items="@ViewBag.Categories" asp-for="@Model.CategoryId">
                 <option value="0">
-                    Bir kategori seçiniz
+                    Choose A Category
                 </option>
             </select>
         </div>

@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace EvimiKur.UI.Controllers
 {
     public class HomeController : Controller
     {
+ 
         private readonly IProductService _productService;
 
         public HomeController(IProductService productService)
@@ -22,9 +24,9 @@ namespace EvimiKur.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetList(StatusType.Active);
+            var products = await _productService.GetListShowroom();
             return View(products);
-            
+
         }
 
         public IActionResult Privacy()

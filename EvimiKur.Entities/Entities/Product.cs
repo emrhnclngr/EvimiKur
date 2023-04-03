@@ -18,8 +18,9 @@ namespace EvimiKur.Entities.Entities
         public decimal UnitPrice { get; set; }
         public int UnitInStock { get; set; }
         public int UnitsInOrder { get; set; }
-        public bool Discontinued { get; set; }
+        public bool ShowroomType { get; set; }
         public string Image { get; set; }
+        public string? Description { get; set; }
 
         [NotMapped]
         public IFormFile UploadImage { get; set; }

@@ -4,14 +4,16 @@ using EvimiKur.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EvimiKur.DataAccess.Migrations
 {
     [DbContext(typeof(EvimiKurContext))]
-    partial class EvimiKurContextModelSnapshot : ModelSnapshot
+    [Migration("20230403034805_SecondaryCreation")]
+    partial class SecondaryCreation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,14 +101,14 @@ namespace EvimiKur.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 4, 3, 8, 15, 57, 838, DateTimeKind.Local).AddTicks(6252),
+                            CreatedDate = new DateTime(2023, 4, 3, 6, 48, 4, 953, DateTimeKind.Local).AddTicks(8289),
                             Definition = "Admin",
                             Status = 0
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 4, 3, 8, 15, 57, 839, DateTimeKind.Local).AddTicks(9237),
+                            CreatedDate = new DateTime(2023, 4, 3, 6, 48, 4, 954, DateTimeKind.Local).AddTicks(8124),
                             Definition = "Member",
                             Status = 0
                         });
@@ -381,9 +383,6 @@ namespace EvimiKur.DataAccess.Migrations
 
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");

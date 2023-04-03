@@ -17,7 +17,7 @@ namespace EvimiKur.DataAccess.Configuration
             builder.Property(x => x.Quantity).IsRequired();
             builder.Property(x => x.UnitPrice).IsRequired();
             builder.Property(x => x.UnitInStock).IsRequired();
-            builder.Property(x => x.Discontinued).IsRequired();
+            
            
 
             builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);

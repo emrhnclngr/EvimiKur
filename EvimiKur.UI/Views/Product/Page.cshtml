@@ -1,0 +1,123 @@
+﻿@model ProductListDto
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Chamb - Responsive E-commerce HTML5 Template</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!--enable mobile device-->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--fontawesome css-->
+      <link rel="stylesheet" href="~/css/font-awesome.min.css">
+      <!--bootstrap css-->
+      <link rel="stylesheet" href="~/css/bootstrap.min.css">
+      <!--animate css-->
+      <link rel="stylesheet" href="~/css/animate-wow.css">
+      <!--main css-->
+      <link rel="stylesheet" href="~/css/style.css">
+      <link rel="stylesheet" href="~/css/bootstrap-select.min.css">
+      <link rel="stylesheet" href="~/css/slick.min.css">
+      <link rel="stylesheet" href="~/css/select2.min.css">
+      <!--responsive css-->
+      <link rel="stylesheet" href="~/css/responsive.css">
+   </head>
+   <body>
+      <!-- Modal -->
+      <div class="modal fade lug" id="myModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Change</h4>
+               </div>
+               <div class="modal-body">
+                  <ul>
+                     <li><a href="#"><img src="images/flag-up-1.png" alt="" /> United States</a></li>
+                     <li><a href="#"><img src="images/flag-up-2.png" alt="" /> France </a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="sidebar" class="top-nav">
+         <ul id="sidebar-nav" class="sidebar-nav">
+            <li><a href="#">Help</a></li>
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">Chamb for Business</a></li>
+         </ul>
+      </div>
+      <div class="product-page-main">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="prod-page-title">
+                     <h2>@Model.ProductName</h2>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-2 col-sm-4">
+                  <div class="left-profile-box-m prod-page">
+                     <div class="pof-text">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-7 col-sm-8">
+                  <div class="md-prod-page">
+                     <div class="md-prod-page-in">
+                        <div class="page-preview">
+                           <div class="preview">
+                              <div class="preview-pic tab-content">
+                                        <div class="tab-pane active" id="pic-1"><img src="~/media/products/@Model.Image" alt="#" /></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="description-box">
+                        <div class="dex-a">
+                           <h4>Description</h4>
+                           <label>@Model.Description</label>
+                        </div>
+                     </div>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-success btn-sm float-end">All Products</a>
+
+                  </div>
+                  <div class="similar-box">
+
+                  </div>
+               </div>
+               <div class="col-md-3 col-sm-12">
+                  <div class="price-box-right">
+                     <h4>Price</h4>
+                     <h3>@Model.UnitPrice.ToString("C2")</h3>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@Model.Id">Add to Cart</a>
+                        }
+                        else
+                        {
+                            <a asp-area="" asp-controller="Account" asp-action="SignIn">Add to Cart</a>
+                        }
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--main js--> 
+      <script src="js/jquery-1.12.4.min.js"></script> 
+      <!--bootstrap js--> 
+      <script src="js/bootstrap.min.js"></script> 
+      <script src="js/bootstrap-select.min.js"></script>
+      <script src="js/slick.min.js"></script> 
+      <script src="js/select2.full.min.js"></script> 
+      <script src="js/wow.min.js"></script> 
+      <!--custom js--> 
+      <script src="js/custom.js"></script>
+   </body>
+</html>

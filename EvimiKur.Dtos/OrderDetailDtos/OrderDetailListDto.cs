@@ -15,5 +15,6 @@ namespace EvimiKur.Dtos.OrderDetailDtos
         public int Discount { get; set; }
         public int AddressId { get; set; }
         public List<ProductListDto> Products { get; set; }
+        
     }
 }

@@ -35,9 +35,9 @@ namespace EvimiKur.UI.Areas.Member.Controllers
 
         public async  Task<IActionResult> List()
         {
-            var UserId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
-            var userResponse = await _appUserService.GetByIdAsync<AppUserListDto>(UserId);
-            ViewBag.UserId = UserId;
+            var userId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+            var userResponse = await _appUserService.GetByIdAsync<AppUserListDto>(userId);
+            ViewBag.UserId = userId;
             
             return View(_cartService.List());
         }
@@ -56,7 +56,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             {
                 TempData["info"] = response.Message;
             }
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Index", "Product", new { area = "" });
         }
 
         public IActionResult Remove(int id)

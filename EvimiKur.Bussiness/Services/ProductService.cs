@@ -51,7 +51,15 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<ProductListDto>>(list);
         }
-       
+        public async Task<List<ProductListDto>> GetProductByCategories(int categoryId,StatusType type)
+        {
+            var query = _uow.GetRepository<Product>().GetQuery();
+
+            var list = await query.Include(x => x.Category).Where(x => x.CategoryId == categoryId && x.Status == (int)type).ToListAsync();
+
+            return _mapper.Map<List<ProductListDto>>(list);
+        }
+
         public async Task<List<ProductListDto>> Search(string query)
         {
             var products = _uow.GetRepository<Product>().GetQuery();
@@ -60,6 +68,12 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<ProductListDto>>(list);
 
+        }
+        public async Task<List<ProductListDto>> GetListShowroom()
+        {
+            var products = _uow.GetRepository<Product>().GetQuery();
+            var list = await products.Where(p => p.ShowroomType == true && p.Status != (int)StatusType.Passive).ToListAsync();
+            return _mapper.Map<List<ProductListDto>>(list);
         }
 
 

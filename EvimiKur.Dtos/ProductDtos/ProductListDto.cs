@@ -1,5 +1,6 @@
 ﻿using EvimiKur.Dtos;
 using EvimiKur.Dtos.Interfaces;
+using EvimiKur.Dtos.OrderDetailDtos;
 using EvimiKur.Entities.Entities;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -18,12 +19,14 @@ namespace EvimiKur.Dtos
         public decimal UnitPrice { get; set; }
         public int UnitInStock { get; set; }
         public bool Status { get; set; }
-        public bool Discontinued { get; set; }
+        public bool ShowroomType { get; set; }
+        public string Description { get; set; }
         public string Image { get; set; }
         public IFormFile UploadImage { get; set; }
         public Dealer Dealer { get; set; }
         public CategoryListDto Category { get; set; }
         public decimal Price => (UnitPrice * Quantity);
+        
 
     }
 }

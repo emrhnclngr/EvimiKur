@@ -20,7 +20,8 @@ namespace EvimiKur.Dtos
         public bool Status { get; set; }
         public int UnitInStock { get; set; }
         public int UnitsInOrder { get; set; }
-        public bool Discontinued { get; set; }
+        public bool ShowroomType { get; set; }
+        public string Description { get; set; }
         public string Image { get; set; }
         public IFormFile UploadImage { get; set; }
         public int DealerId { get; set; }

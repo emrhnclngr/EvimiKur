@@ -20,7 +20,7 @@ namespace EvimiKur.Dtos
         public List<ProductListDto> Products { get; set; }
         public decimal Price { get; set; }
         public string Image { get; set; }
-        
+       
 
 
 
