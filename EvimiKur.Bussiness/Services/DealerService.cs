@@ -26,16 +26,6 @@ namespace EvimiKur.Bussiness.Services
             _mapper = mapper;
             _createDtoValidator = createDtoValidator;
         }
-
-
-        //public async Task<List<DealerListDto>> GetList(StatusType type)
-        //{
-        //    var query = _uow.GetRepository<Dealer>().GetQuery();
-
-        //    var list = await query.Include(x => x.Products).ThenInclude(x=>x.Category).Where(x => x.Status == (int)type).ToListAsync();
-
-        //    return _mapper.Map<List<DealerListDto>>(list);
-        //}
         public async Task<List<DealerListDto>> GetList(StatusType type)
         {
             var query = _uow.GetRepository<Dealer>().GetQuery();
@@ -44,8 +34,6 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<DealerListDto>>(list);
         }
-
-
 
     }
 }

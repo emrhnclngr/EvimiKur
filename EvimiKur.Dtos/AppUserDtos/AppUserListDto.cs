@@ -23,6 +23,7 @@ namespace EvimiKur.Dtos
         public string Email { get; set; }
         public DateTime? BirthDate { get; set; }
         public List<Address> Addresses { get; set; }
+        public List<OrderListDto> Orders { get; set; }
 
     }
 }

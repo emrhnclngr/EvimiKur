@@ -15,9 +15,5 @@ namespace EvimiKur.UI.Models
         public string Image { get; set; }
         public IFormFile UploadImage { get; set; }
 
-
-
-
-        
     }
 }

@@ -13,8 +13,8 @@ namespace EvimiKur.Entities.Entities
         public string Name { get; set; }
         public string Description { get; set; }
 
+
         //Relational Property
-        
         public List<Product> Products { get; set; }
 
         public List<SubCategory> SubCategories  { get; set; }

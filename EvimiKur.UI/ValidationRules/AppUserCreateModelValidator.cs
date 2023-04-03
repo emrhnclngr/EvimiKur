@@ -37,8 +37,5 @@ namespace EvimiKur.UI.ValidationRules
             return !username.Contains(firstname);
         }
        
-        
-
-
     }
 }

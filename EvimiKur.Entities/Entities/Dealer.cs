@@ -15,7 +15,7 @@ namespace EvimiKur.Entities.Entities
         public string Responsible { get; set; }
         public string PhoneNumber { get; set; }
 
-
+        //Relational Property
         public List<Product> Products { get; set; }
         
     }

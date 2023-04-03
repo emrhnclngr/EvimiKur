@@ -15,7 +15,6 @@ namespace EvimiKur.DataAccess.Context
         {
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
@@ -30,11 +29,8 @@ namespace EvimiKur.DataAccess.Context
             modelBuilder.ApplyConfiguration(new AddressConfiguration());
             modelBuilder.ApplyConfiguration(new DealerConfiguration());
             modelBuilder.ApplyConfiguration(new AddressConfiguration());
-           
 
-          
         }
-
 
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
@@ -48,8 +44,6 @@ namespace EvimiKur.DataAccess.Context
         public DbSet<Address> Suppliers { get; set; }
         public DbSet<Dealer> Dealers { get; set; }
         public DbSet<Address> Addresses { get; set; }
-
-
 
     }
 

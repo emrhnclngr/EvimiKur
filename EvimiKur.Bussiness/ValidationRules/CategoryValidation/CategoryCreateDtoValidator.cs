@@ -14,7 +14,6 @@ namespace EvimiKur.Bussiness.ValidationRules.CategoryValidation
         {
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Description).NotEmpty();
-            //RuleFor(x => x.Status).NotEmpty();
 
         }
     }

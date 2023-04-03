@@ -16,16 +16,12 @@ namespace EvimiKur.Bussiness.Interfaces
         where UpdateDto : class, IUpdateDto, new()
         where ListDto : class, IDto, new()
         where T : BaseEntity
-
-
     {
         Task<IResponse<CreateDto>> CreateAsync(CreateDto dto);
         Task<IResponse<UpdateDto>> UpdateAsync(UpdateDto dto);
         Task<IResponse> RemoveAsync(int id);
         Task<IResponse<IDto>> GetByIdAsync<IDto>(int id);
         Task<IResponse<List<ListDto>>> GetAllAsync();
-       
-
 
     }
 }

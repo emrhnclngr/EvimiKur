@@ -17,24 +17,6 @@
 
 }
 
-@*<div class="row">
-
-
-    @foreach (var item in Model)
-    {
-        <div class="card" style="width: 18rem;">
-
-            <img src="/media/products/@item.Image" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">>@item.ProductName</h5>
-                <p class="card-text">@item.UnitPrice.ToString("C2")</p>
-            <a class="btn btn-primary" asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
-            </div>
-        </div>
-    }
-</div>*@
-
-
 
 <div class="row">
     @foreach (var item in Model)

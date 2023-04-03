@@ -23,17 +23,10 @@ namespace EvimiKur.Areas.Member.Controllers
     public class HomeController : Controller
     {
         private readonly IAppUserService _appUserService;
-        
-        private readonly IUow _uow;
-        private readonly IMapper _mapper;
 
-
-        public HomeController(IAppUserService appUserService, IUow uow, IMapper mapper)
+        public HomeController(IAppUserService appUserService)
         {
             _appUserService = appUserService;
-            _uow = uow;
-            _mapper = mapper;
-            
         }
 
         [Authorize(Roles = "Member")]
@@ -53,6 +46,7 @@ namespace EvimiKur.Areas.Member.Controllers
             return this.ResponseView(response);
 
         }
+
         [HttpPost]
         public async Task<IActionResult> Update(AppUserUpdateDto dto)
         {

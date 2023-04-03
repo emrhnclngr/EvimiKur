@@ -34,14 +34,6 @@ namespace EvimiKur.Bussiness.Services
            
         }
 
-        //public async Task<IResponse<List<ProductListDto>>> GetActivesAsync()
-        //{
-        //    var data = await _uow.GetRepository<Product>().GetAllAsync(x => x.Status, x => x.CreatedDate, OrderByType.DESC);
-        //    var dto = _mapper.Map<List<ProductListDto>>(data);
-        //    return new Response<List<ProductListDto>>(ResponseType.Success, dto);
-        //}
-
-
         public async Task<List<ProductListDto>> GetList()
         {
             var query = _uow.GetRepository<Product>().GetQuery();
@@ -51,7 +43,6 @@ namespace EvimiKur.Bussiness.Services
             return _mapper.Map<List<ProductListDto>>(list);
         }
 
-        // Aşağıdaki metotlar if else yapısıyla birleştirilecek...
         public async Task<List<ProductListDto>> GetList(StatusType type)
         {
             var query = _uow.GetRepository<Product>().GetQuery();
@@ -60,14 +51,7 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<ProductListDto>>(list);
         }
-        //public async Task<List<ProductListDto>> GetListInActiveProduct()
-        //{
-        //    var query = _uow.GetRepository<Product>().GetQuery();
-
-        //    var list = await query.Include(x => x.Category).Include(x=>x.Dealer).Where(x => x.Status == false).ToListAsync();
-
-        //    return _mapper.Map<List<ProductListDto>>(list);
-        //}
+       
         public async Task<List<ProductListDto>> Search(string query)
         {
             var products = _uow.GetRepository<Product>().GetQuery();

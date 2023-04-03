@@ -13,8 +13,8 @@ namespace EvimiKur.Entities.Entities
         public string Description { get; set; }
         public bool Status { get; set; }
 
-        //Relational Property
 
+        //Relational Property
         public int OrderId { get; set; }
         public Order Order { get; set; }
 

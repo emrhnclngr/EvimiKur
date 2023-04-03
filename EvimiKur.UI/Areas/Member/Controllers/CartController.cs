@@ -33,10 +33,6 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             _contextAccessor = contextAccessor;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
         public async  Task<IActionResult> List()
         {
             var UserId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
@@ -48,7 +44,6 @@ namespace EvimiKur.UI.Areas.Member.Controllers
        
         public async Task<IActionResult> AddCart(int id)
         {
-            
             var response = await _productService.GetByIdAsync<ProductListDto>(id);
             if (response.ResponseType == ResponseType.Success)
             {
@@ -63,6 +58,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             }
             return RedirectToAction("Index", "Product");
         }
+
         public IActionResult Remove(int id)
         {
             _cartService.Remove(id);
@@ -75,15 +71,12 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             var productList = _cartService.List();
             return RedirectToAction("List", "Cart");
         }
+
         public IActionResult DecreaseProductQuantity(int id)
         {
             _cartService.DecreaseCartCookie(id);
             var productList = _cartService.List();
             return RedirectToAction("List", "Cart");
         }
-        
-        
-
-
     }
 }

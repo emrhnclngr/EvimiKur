@@ -1,4 +1,6 @@
-﻿using EvimiKur.UI.Models;
+﻿using EvimiKur.Bussiness.Interfaces;
+using EvimiKur.Common.Enums;
+using EvimiKur.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,16 +13,18 @@ namespace EvimiKur.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductService productService)
         {
-            _logger = logger;
+            _productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _productService.GetList(StatusType.Active);
+            return View(products);
+            
         }
 
         public IActionResult Privacy()

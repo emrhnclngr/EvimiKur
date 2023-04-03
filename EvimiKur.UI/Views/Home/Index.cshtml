@@ -1,6 +1,8 @@
 ﻿@{
     Layout = "_Layout";
+    
 }
+
 <link href="~/css/assets/css/style.css" rel="stylesheet" />
 
 <div class="modal fade lug" id="myModal" role="dialog">
@@ -33,7 +35,7 @@
 
             <div  class="row clearfix">
                 <div class="find-box">
-                    <h1>Find your next product or<br>business partner here.</h1>
+                    <h1>Find your next product</h1>
                     <h4>It has never been easier.</h4>
                     <form asp-controller="Product" asp-action="List" method="get">
 
@@ -41,7 +43,6 @@
                             <div class="col-sm-6">
                                 <div  class="form-sh">
                                     <input type="text" id="search" name="query" placeholder="Search something you love">
-                                    <p>Or simply<a href="#"> click here </a> and get inspired!</p>
                                 </div>
                             </div>
                             <div class="col-sm-3">

@@ -29,17 +29,17 @@ namespace EvimiKur.UI.Areas.Member.Controllers
         private readonly ICartService _cartService;
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
-        private readonly IAddressService _addressService;
 
 
-        public OrderController(IAppUserService appUserService, IHttpContextAccessor contextAccessor, ICartService cartService, IProductService productService, IOrderService orderService, IAddressService addressService)
+
+        public OrderController(IAppUserService appUserService, IHttpContextAccessor contextAccessor, ICartService cartService, IProductService productService, IOrderService orderService)
         {
             _appUserService = appUserService;
             _contextAccessor = contextAccessor;
             _cartService = cartService;
             _productService = productService;
             _orderService = orderService;
-            _addressService = addressService;
+
         }
 
         public IActionResult Index()
@@ -48,7 +48,6 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             return View();
         }
 
-       
         public async Task<IActionResult> Add()
         {
             if (_cartService.List() == null)
@@ -64,8 +63,6 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             if (userResponse.ResponseType == Common.ResponseType.Success)
             {
                 order.AppUserId = userResponse.Data.Id;
-                //order.AppUser = userResponse.Data;
-
             }
 
 
@@ -105,9 +102,9 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             }
             return Redirect("~/Home/Index");
         }
+
         public async Task<IActionResult> Pending(int userId)
         {
-
             var orders = await _orderService.GetListAsync(userId, Common.Enums.StatusType.Pending);
 
             foreach (var order in orders)
@@ -126,8 +123,8 @@ namespace EvimiKur.UI.Areas.Member.Controllers
                 order.Price = order.OrderDetails.Sum(x => x.UnitPrice);
             }
             return View(orders);
-
         }
+
         public async Task<IActionResult> Confirmed(int userId)
         {
 
@@ -151,6 +148,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             return View(orders);
             
         }
+
         public async Task<IActionResult> Rejected(int userId)
         {
 
@@ -172,9 +170,6 @@ namespace EvimiKur.UI.Areas.Member.Controllers
                 order.Price = order.OrderDetails.Sum(x => x.UnitPrice);
             }
             return View(orders);
-
         }
-
-
     }
 }

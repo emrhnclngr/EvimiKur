@@ -9,28 +9,15 @@ namespace EvimiKur.Entities.Entities
 {
     public class Address : BaseEntity
     {
-
         public string AddressName { get; set; }
         public string City { get; set; }
         public string Region { get; set; }
         public string AddressDetail { get; set; }
         public string Country { get; set; }
 
+        //Relational Property
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         
-
-
-
-
-        //Relational Property
-
-        //public List<Order> Orders { get; set; }
-
-
-
-
-
-
     }
 }

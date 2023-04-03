@@ -58,8 +58,6 @@ namespace EvimiKur.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(AppUserCreateModel model)
         {
-
-
             var result = _appUserCreateModelValidator.Validate(model);
             if (result.IsValid)
             {
@@ -74,12 +72,9 @@ namespace EvimiKur.UI.Controllers
             {
                 ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
-
             return View(model);
 
-
         }
-
 
         public IActionResult SignIn()
         {
@@ -92,7 +87,6 @@ namespace EvimiKur.UI.Controllers
             if (result.ResponseType == Common.ResponseType.Success)
             {
                 var roleResult = await _appUserService.GetRolesByUserIdAsync(result.Data.Id);
-                //İlgili kullanıcın rollerini çekmemiz.
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,dto.Username)
@@ -129,14 +123,9 @@ namespace EvimiKur.UI.Controllers
                 bool claimsRol = claimsIdentity.Claims.Any(x => x.Value.Contains("1"));
                 
 
-                if (rol == true /*|| claimsRol == true*/)
+                if (rol == true)
                 {
-
-
-
-
                     return RedirectToAction("Index", "Home", new { area = "Admin" });
-                    
                 }
                 else
                 {

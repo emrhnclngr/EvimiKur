@@ -18,7 +18,6 @@ namespace EvimiKur.DataAccess.Interfaces
         Task<List<TResult>> GetFilteredList<TResult>(Expression<Func<T, TResult>> select,
                                                                     Expression<Func<T, bool>> where = null,
                                                                     Func<IQueryable<T>, IOrderedQueryable<T>> orderyBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> join = null);
-        //List<AppUserListDto> GetAppUser();
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter);
         Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC);
         Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC);

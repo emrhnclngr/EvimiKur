@@ -10,8 +10,6 @@ namespace EvimiKur.UI.Models
 {
     public class ProductCreateModel
     {
-       
-        
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public int UnitPrice { get; set; }

@@ -17,7 +17,6 @@ namespace EvimiKur.DataAccess.Configuration
             builder.Property(x => x.Description).HasMaxLength(300);
             builder.Property(x => x.Status).IsRequired();
 
-
             builder.HasOne(x => x.Category).WithMany(x => x.SubCategories).HasForeignKey(x => x.CategoryId);
         }
     }

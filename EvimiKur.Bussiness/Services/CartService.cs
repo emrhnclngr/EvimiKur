@@ -31,13 +31,10 @@ namespace EvimiKur.Bussiness.Services
             
         }
 
-
         public decimal CalculateTotalPrice(decimal unitPrice, int quantity)
         {
             return unitPrice * quantity;
         }
-
-
 
         public void Add(ProductListDto product)
         {
@@ -47,7 +44,6 @@ namespace EvimiKur.Bussiness.Services
             if (productList == null)
             {
                 productList = new List<ProductListDto>();
-                //product.Quantity = 1;
                 productList.Add(product);
             }
             else
@@ -57,7 +53,6 @@ namespace EvimiKur.Bussiness.Services
                 if (existingProduct != null)
                 {
                     existingProduct.Quantity += product.Quantity;
-                    //existingProduct.TotalPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
                 }
                 else
                 {
@@ -104,10 +99,7 @@ namespace EvimiKur.Bussiness.Services
                
                 if (existingProduct.Quantity < existingProduct.UnitInStock)
                 {
-                    
                     existingProduct.Quantity += 1;
-                    //existingProduct.TotalPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
-                    
                 }
                 else
                 {
@@ -132,7 +124,6 @@ namespace EvimiKur.Bussiness.Services
                     existingProduct.Quantity -= 1;
                     else
                         existingProduct.Quantity = 0;
-                    //existingProduct.TotalPrice = CalculateTotalPrice(existingProduct.UnitPrice, existingProduct.Quantity);
 
                 }
             }
@@ -140,19 +131,6 @@ namespace EvimiKur.Bussiness.Services
             _contextAccessor.HttpContext.Response.SetObject("sepet" + userId, productList);
         }
        
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 }

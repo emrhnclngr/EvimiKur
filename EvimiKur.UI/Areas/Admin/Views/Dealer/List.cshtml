@@ -1,7 +1,6 @@
 ﻿@model List<ProductListDto>
 @{
     ViewData["Title"] = "List";
-    //Layout = "_Layout";
 }
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,15 +18,10 @@
 
 
 
-
-
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="~/css/create/js/scripts.js"></script>
-
-
-
 
 
 <div class="container my-3">
@@ -97,9 +91,6 @@
 
                                 </div>
 
-
-
-
                             </div>
                         </div>
 
@@ -108,6 +99,7 @@
 
             </div>
         }
+        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-primary mt-2">Back To List</a>
 
     </div>
 </div>
@@ -115,271 +107,3 @@
 
 
 
-@*@Model[i].Id*@
-@*@Html.Raw(Model[i].Description)*@
-
-
-
-
-@*<div class="container-fluid">
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Dealers 1
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Product List</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table table-responsive table-responsive-sm">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>Status</th>
-                                                    <th>Category</th>
-                                                    <th><span>Stock</span>Stock</th>
-                                                    <th>Edit</th>
-                                                    <th>Remove</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in Model)
-                                                {
-                                                    <tr>
-                                                        <td>@item.Id</td>
-                                                        <td>
-                                                            <img src="/media/products/@item.Image" width="100">
-                                                        </td>
-                                                        <td>@item.ProductName</td>
-                                                        <td>@item.Status</td>
-                                                        <td>@item.Category.Name</td>
-                                                        <td><span>@item.UnitInStock</span></td>
-                                                        <td>
-                                                            <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
-                                                        </td>
-                                                        <td>
-                                                            <a asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a asp-controller="Product" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Product</a>*@
-@* <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>*@
-@*              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Dealers 2
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Product List</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table table-responsive table-responsive-sm">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>Status</th>
-                                                    <th>Category</th>
-                                                    <th><span>Stock</span>Stock</th>
-                                                    <th>Edit</th>
-                                                    <th>Remove</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in Model)
-                                                {
-                                                    <tr>
-                                                        <td>@item.Id</td>
-                                                        <td>
-                                                            <img src="/media/products/@item.Image" width="100">
-                                                        </td>
-                                                        <td>@item.ProductName</td>
-                                                        <td>@item.Status</td>
-                                                        <td>@item.Category.Name</td>
-                                                        <td><span>@item.UnitInStock</span></td>
-                                                        <td>
-                                                            <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
-                                                        </td>
-                                                        <td>
-                                                            <a asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a asp-controller="Product" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Product</a>*@
-@*<a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>*@
-@*           </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Dealers 3
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Product List</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table table-responsive table-responsive-sm">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>Status</th>
-                                                    <th>Category</th>
-                                                    <th><span>Stock</span>Stock</th>
-                                                    <th>Edit</th>
-                                                    <th>Remove</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in Model)
-                                                {
-                                                    <tr>
-                                                        <td>@item.Id</td>
-                                                        <td>
-                                                            <img src="/media/products/@item.Image" width="100">
-                                                        </td>
-                                                        <td>@item.ProductName</td>
-                                                        <td>@item.Status</td>
-                                                        <td>@item.Category.Name</td>
-                                                        <td><span>@item.UnitInStock</span></td>
-                                                        <td>
-                                                            <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
-                                                        </td>
-                                                        <td>
-                                                            <a asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a asp-controller="Product" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Product</a>*@
-@*<a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>*@
-@*                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card-footer">
-        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
-    </div>
-
-</div>*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Product List</h4>
-            </div>
-            <div class="card-body">
-                <div class="table table-responsive table-responsive-sm">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Category</th>
-                                <th>ImagePath</th>
-                                <th><span>Stock</span>Stock</th>
-                                <th>Edit</th>
-                                <th>Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.Id</td>
-                                    <td>@item.ProductName</td>
-                                    <td>@item.ProductStatus.Definition</td>
-                                    <td>@item.Category.Name</td>
-                                    <td>@item.ImagePath</td>
-                                    <td><span>@item.UnitInStock</span></td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
-                                    </td>
-                                    <td>
-                                        <a asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm confirmDeletion">Remove</a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card-footer">
-                <a asp-controller="Product" asp-action="Create" class="btn btn-outline-success btn-sm float-right">Create Product</a>
-                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
-            </div>
-        </div>
-    </div>
-</div>*@

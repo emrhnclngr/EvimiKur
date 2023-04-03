@@ -57,12 +57,7 @@ namespace EvimiKur.UI
        opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/AccessDenied");
 
    });
-            //services.ConfigureApplicationCookie(options =>
-            //{
-            //    options.Cookie.Name = "sepet";
-            //    options.Cookie.Expiration = TimeSpan.FromDays(30);
-            //});
-            // Sepet için yapmýþ olduðum cookie ait.
+            
 
 
             services.AddControllersWithViews();

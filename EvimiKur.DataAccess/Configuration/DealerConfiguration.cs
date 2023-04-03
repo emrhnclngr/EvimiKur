@@ -17,9 +17,6 @@ namespace EvimiKur.DataAccess.Configuration
             builder.Property(x => x.Description).HasMaxLength(300).IsRequired();
             builder.Property(x => x.Address).HasMaxLength(300).IsRequired();
             builder.Property(x =>x.PhoneNumber).HasMaxLength(50).IsRequired();
-
-
-            
         }
     }
 }

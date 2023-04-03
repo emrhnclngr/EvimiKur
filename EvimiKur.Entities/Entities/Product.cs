@@ -31,13 +31,5 @@ namespace EvimiKur.Entities.Entities
         public List<OrderDetail> OrderDetails { get; set; }
         public int DealerId { get; set; }
         public Dealer Dealer { get; set; }
-
-
-        //public int ProductReturnId { get; set; }
-        //public ProductReturn ProductReturn { get; set; }
-
-        //public int OrderId { get; set; }
-        //public Order Order { get; set; }
-
     }
 }

@@ -30,20 +30,17 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IDealerService _dealerService;
-        private readonly IValidator<ProductCreateModel> _userCreateModelValidator;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IMapper _mapper;
-        private readonly IUow _uow;
 
 
 
-        public ProductController(IProductService productService, ICategoryService categoryService, IValidator<ProductCreateModel> userCreateModelValidator, IMapper mapper = null, IUow uow = null, IWebHostEnvironment webHostEnvironment = null, IDealerService dealerService = null)
+        public ProductController(IProductService productService, ICategoryService categoryService, IMapper mapper,IWebHostEnvironment webHostEnvironment,IDealerService dealerService)
         {
             _productService = productService;
             _categoryService = categoryService;
-            _userCreateModelValidator = userCreateModelValidator;
             _mapper = mapper;
-            _uow = uow;
+
             _webHostEnvironment = webHostEnvironment;
             _dealerService = dealerService;
         }
@@ -61,6 +58,7 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             };
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(ProductCreateModel model)
         {
@@ -85,37 +83,31 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
                 fileStream.Close();
             }
 
-
             var dto = _mapper.Map<ProductCreateDto>(model);
             dto.Image = imageName;
             var response = await _productService.CreateAsync(dto);
             return this.ResponseRedirectAction(response, "Index");
 
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            //var products = await _productService.GetCategoryWithProduct();
             var products = await _productService.GetList(StatusType.Active);
             return View(products);
-
-            //var response = await _productService.GetAllAsync();
-            //return this.ResponseView(response);
         }
+
         public async Task<IActionResult> List(string query)
         {
-
             return View(await _productService.Search(query));
         }
         public async Task<IActionResult> PassiveProductList()
         {
             var products = await _productService.GetList(StatusType.Passive);
             return View(products);
-
         }
         public async Task<IActionResult> Update(int id)
         {
-          
             var response = await _productService.GetByIdAsync<ProductUpdateDto>(id);
             var categories = await _categoryService.GetList(StatusType.Active);
             var dealers = await _dealerService.GetList(StatusType.Active);
@@ -131,11 +123,10 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             }).ToList();
             return this.ResponseView(response);
         }
+
         [HttpPost]
         public async Task<IActionResult> Update(ProductUpdateDto dto)
         {
-            
-
             string imageName = "noimage.png";
             if (dto.UploadImage != null)
             {
@@ -148,14 +139,13 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
                 }
                 imageName = $"{Guid.NewGuid()}_{dto.UploadImage.FileName}";
                 string filePath = Path.Combine(uploadDir, imageName);
+                dto.Image = imageName;
                 FileStream fileStream = new FileStream(filePath, FileMode.Create);
                 await dto.UploadImage.CopyToAsync(fileStream);
                 fileStream.Close();
             }
-            dto.Image = imageName;
             var response = await _productService.UpdateAsync(dto);
-
-
+            
             var categories = await _categoryService.GetList(StatusType.Active);
             var dealers = await _dealerService.GetList(StatusType.Active);
             ViewData["Categories"] = categories.Select(x => new SelectListItem()
@@ -168,7 +158,6 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
                 Text = x.Name,
                 Value = x.Id.ToString()
             }).ToList();
-
 
             return this.ResponseRedirectAction(response, "Index");
         }
@@ -186,11 +175,6 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
                 var response = await _productService.RemoveAsync(id);
                 return this.ResponseRedirectAction(response, "PassiveProductList");
             }
-
         }
-
-
-
-
     }
 }

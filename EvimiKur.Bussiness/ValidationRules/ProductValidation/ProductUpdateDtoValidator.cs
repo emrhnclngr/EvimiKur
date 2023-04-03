@@ -17,8 +17,6 @@ namespace EvimiKur.Bussiness.ValidationRules.ProductValidation
             RuleFor(x => x.Quantity).NotEmpty();
             RuleFor(x => x.UnitPrice).NotEmpty();
             RuleFor(x => x.UnitInStock).NotEmpty();
-           
-            
 
         }
     }

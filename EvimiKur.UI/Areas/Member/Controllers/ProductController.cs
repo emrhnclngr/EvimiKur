@@ -19,16 +19,10 @@ namespace EvimiKur.UI.Areas.Member.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly ICartService _cartService;
-        private readonly IMapper _mapper;
-        private readonly IUow _uow;
 
-        public ProductController(IProductService productService, ICartService cartService, IMapper mapper, IUow uow)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
-            _cartService = cartService;
-            _mapper = mapper;
-            _uow = uow;
         }
 
         public async Task<IActionResult> Index()
@@ -37,7 +31,5 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             return View(products);
         }
        
-
-
     }
 }

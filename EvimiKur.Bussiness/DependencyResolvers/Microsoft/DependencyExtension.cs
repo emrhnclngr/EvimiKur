@@ -48,10 +48,6 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddTransient<IValidator<AddressUpdateDto>, AddressUpdateDtoValidator>();
 
 
-
-
-
-
             services.AddScoped<IAppUserService, AppUserService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
@@ -60,13 +56,6 @@ namespace EvimiKur.Bussiness.DependencyResolvers.Microsoft
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IAddressService, AddressService>();
             
-            
-
-
-
-
-
-
         }
     }
 }

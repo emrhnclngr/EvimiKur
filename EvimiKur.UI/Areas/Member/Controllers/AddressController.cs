@@ -25,14 +25,15 @@ namespace EvimiKur.UI.Areas.Member.Controllers
             var userId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
             var address = await _addressService.GetList(userId);
             
-           
             return View(address);
         }
+
         public IActionResult Create()
         {
 
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(AddressCreateDto dto)
         {
@@ -42,11 +43,13 @@ namespace EvimiKur.UI.Areas.Member.Controllers
 
             return this.ResponseRedirectAction(address, "Index");
         }
+
         public async Task<IActionResult> Update(int id)
         {
             var response = await _addressService.GetByIdAsync<AddressUpdateDto>(id);
             return this.ResponseView(response);
         }
+
         [HttpPost]
         public async Task<IActionResult> Update(AddressUpdateDto dto)
         {
@@ -55,6 +58,7 @@ namespace EvimiKur.UI.Areas.Member.Controllers
 
             return this.ResponseRedirectAction(address, "Index");
         }
+
         public async Task<IActionResult> Remove (int id)
         {
             

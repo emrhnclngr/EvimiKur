@@ -21,21 +21,16 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
-        private readonly IHttpContextAccessor _contextAccessor;
-        private readonly ICartService _cartService;
         private readonly IProductService _productService;
 
-        public OrderController(IOrderService orderService, IHttpContextAccessor contextAccessor, ICartService cartService, IProductService productService)
+        public OrderController(IOrderService orderService, IProductService productService)
         {
             _orderService = orderService;
-            _contextAccessor = contextAccessor;
-            _cartService = cartService;
             _productService = productService;
         }
 
         public async Task<IActionResult> Pending()
         {
-
 
             var orders = await _orderService.GetList(Common.Enums.StatusType.Pending);
 
@@ -47,7 +42,6 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
                     if (response.ResponseType == ResponseType.Success)
                     {
                         var product = response.Data;
-
                         item.UnitPrice = (product.UnitPrice * item.Quantity);
                     }
                 }
@@ -56,11 +50,13 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             }
             return View(orders);
         }
+
         public async Task<IActionResult> SetStatus(int orderId, StatusType type)
         {
             await _orderService.SetStatusAsync(orderId, type);
             return RedirectToAction("Pending");
         }
+
         public async Task<IActionResult> Confirmed()
         {
             var orders = await _orderService.GetList(Common.Enums.StatusType.Active);
@@ -75,19 +71,13 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
                         var product = response.Data;
 
                         item.UnitPrice = (product.UnitPrice * item.Quantity);
-                        //order.Image = response.Data.Image;
-                        
                     }
                 }
-
                 order.Price = order.OrderDetails.Sum(x => x.UnitPrice);
-                
-
             }
             return View(orders);
-
-            
         }
+
         public async Task<IActionResult> Rejected()
         {
             var orders = await _orderService.GetList(Common.Enums.StatusType.Passive);
@@ -109,11 +99,6 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
             }
             return View(orders);
 
-
         }
-
-
-
-
     }
 }

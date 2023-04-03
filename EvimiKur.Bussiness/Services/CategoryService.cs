@@ -33,18 +33,5 @@ namespace EvimiKur.Bussiness.Services
 
             return _mapper.Map<List<CategoryListDto>>(list);
         }
-        //public async Task<List<CategoryListDto>> GetListInActiveCategory()
-        //{
-        //    var query = _uow.GetRepository<Category>().GetQuery();
-
-        //    var list = await query.Where(x => x.Status == false).ToListAsync();
-
-        //    return _mapper.Map<List<CategoryListDto>>(list);
-        //}
-
-
-
-
-
     }
 }

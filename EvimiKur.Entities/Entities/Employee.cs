@@ -21,7 +21,7 @@ namespace EvimiKur.Entities.Entities
         public string PhoneNumber { get; set; }
         public string ImagePath { get; set; }
 
-        //Relational Property
+       
 
 
     }

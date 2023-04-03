@@ -12,7 +12,6 @@ namespace EvimiKur.Entities.Entities
         
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Status { get; set; }
 
         //Relational Property
         public int CategoryId { get; set; }

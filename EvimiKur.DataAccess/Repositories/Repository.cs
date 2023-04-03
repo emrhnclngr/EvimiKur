@@ -48,24 +48,6 @@ namespace EvimiKur.DataAccess.Repositories
 
             else return await query.Select(select).ToListAsync();
         }
-        //public List<AppUserListDto> GetAppUser()
-        //{
-
-        //    return _context.AppUsers
-        //        .Select(x => new AppUserListDto()
-        //        {
-        //            Id = x.Id,
-        //            Firstname = x.Firstname,
-        //            Surname = x.Surname,
-        //            Username = x.Username,
-        //            Password = x.Password,
-        //            PhoneNumber = x.PhoneNumber,
-        //            Gender = x.Gender,
-        //            Email = x.Email,
-        //            BirthDate = x.BirthDate
-        //        }).ToList();
-
-        //}
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {

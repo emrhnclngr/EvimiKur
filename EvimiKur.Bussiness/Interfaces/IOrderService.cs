@@ -14,7 +14,5 @@ namespace EvimiKur.Bussiness.Interfaces
         Task<List<OrderListDto>> GetList(StatusType type);
         Task SetStatusAsync(int orderId, StatusType type);
         Task<List<OrderListDto>> GetListAsync(int userId, StatusType type);
-
-
     }
 }

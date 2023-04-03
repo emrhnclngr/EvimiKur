@@ -11,29 +11,11 @@
     <div class="alert alert-success d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill" /></svg>
         <div>
-            Ekledin la gardaş!!! @TempData["info"].ToString()
+             @TempData["info"].ToString()
         </div>
     </div>
 
 }
-
-@*<div class="row">
-
-
-    @foreach (var item in Model)
-    {
-        <div class="card" style="width: 18rem;">
-
-            <img src="/media/products/@item.Image" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">>@item.ProductName</h5>
-                <p class="card-text">@item.UnitPrice.ToString("C2")</p>
-            <a class="btn btn-primary" asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
-            </div>
-        </div>
-    }
-</div>*@
-
 
 
 <div class="row">
@@ -49,7 +31,14 @@
                     <p class="card-text">@item.UnitPrice.ToString("C2")</p>
                 </div>
                 <div class="card-footer">
-                    <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-area="Member" asp-controller="Cart" asp-action="AddCart" asp-route-id="@item.Id">Add to Cart</a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="SignIn">Add to Cart</a>
+                    }
                 </div>
             </div>
         </div>

@@ -14,13 +14,9 @@ namespace EvimiKur.Bussiness.Interfaces
 {
     public interface IProductService : IService<ProductCreateDto,ProductUpdateDto,ProductListDto,Product>
     {
-        //Task<IResponse<List<ProductListDto>>> GetActivesAsync();
-        //Task<IResponse<List<ProductListDto>>> GetCategoryWithProduct();
         Task<List<ProductListDto>> GetList();
         Task<List<ProductListDto>> GetList(StatusType type);
-        //Task<List<ProductListDto>> GetListInActiveProduct();
         Task<List<ProductListDto>> Search(string query);
-
 
     }
 }

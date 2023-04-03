@@ -38,17 +38,10 @@ namespace EvimiKur.Bussiness.Services
             if (validationResult.IsValid)
             {
                 var user = _mapper.Map<AppUser>(dto);
-                //1.yol
 
-                //user.AppUserRoles = new List<AppUserRole>();
-                //user.AppUserRoles.Add(new AppUserRole
-                //{
-                //    AppUser = user,
-                //    AppRoleId = roleId
-                //});
                 await _uow.GetRepository<AppUser>().CreateAsync(user);
 
-                //2.yol
+                
                 await _uow.GetRepository<AppUserRole>().CreateAsync(new AppUserRole
                 {
                     AppUser = user,
@@ -57,11 +50,6 @@ namespace EvimiKur.Bussiness.Services
                 await _uow.SaveChangesAsync();
                 return new Response<AppUserCreateDto>(ResponseType.Success, dto);
 
-                //await _uow.GetRepository<AppUserRole>().CreateAsync(new AppUserRole
-                //{
-                //    AppRoleId = roleId,
-                //    AppUserId
-                //});
             }
             return new Response<AppUserCreateDto>(dto, validationResult.ConvertToCustomValidationError());
         }
@@ -99,21 +87,7 @@ namespace EvimiKur.Bussiness.Services
 
             return new Response<List<AppUserLoginDto>>(ResponseType.Success, dto);
         }
-        //public async Task<List<AppUserListDto>> GetList(RoleType type)
-        //{
-        //    var query = _uow.GetRepository<AppUser>().GetQuery();
-
-        //    var list = await query.Include(x => x.AppUserRoles).Where(x => x.Id == (int)type).ToListAsync(); ;
-
-        //    return _mapper.Map<List<AppUserListDto>>(list);
-        //}
-        //public async Task<List<AppUserListDto>> GetAddress()
-        //{
-        //    var query = _uow.GetRepository<AppUser>().GetQuery();
-        //    var list = await query.Include(x=>x.Addresses).ToListAsync();
-        //    return _mapper.Map<List<AppUserListDto>>(list);
-
-        //}
+        
         
 
 

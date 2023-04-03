@@ -21,7 +21,6 @@ namespace EvimiKur.Entities.Entities
         public string ImagePath { get; set; }
         public string Email { get; set; }
         public DateTime? BirthDate { get; set; }
-        //public Role? Role { get; set; }         Enumla birlikte roller belirlenerek yapılacak.
         public Gender Gender { get; set; }       
 
         //Relational Property

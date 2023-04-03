@@ -21,7 +21,6 @@ namespace EvimiKur.Business.Helpers
                 new DealerProfile(),
                 new OrderProfile(),
                 new AddressProfile(),
-                
             };
         }
     }

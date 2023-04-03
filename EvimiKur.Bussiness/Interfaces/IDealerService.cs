@@ -11,7 +11,6 @@ namespace EvimiKur.Bussiness.Interfaces
 {
     public interface IDealerService : IService<DealerCreateDto,DealerUpdateDto,DealerListDto,Dealer>
     {
-        //Task<List<DealerListDto>> GetListActiveDealers();
         Task<List<DealerListDto>> GetList(StatusType type);
     }
 }

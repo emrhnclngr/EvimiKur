@@ -1,6 +1,7 @@
-﻿@using EvimiKur.Entities.Entities
-@model ProductUpdateDto
-
+﻿@model ProductUpdateDto
+@{
+    ViewData["Title"] = "Update";
+}
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -18,26 +19,16 @@
 
 
 
-
-
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="~/css/create/js/scripts.js"></script>
 
 
-
-
-
-
 <div class="container-fluid">
     <form asp-action="Update" asp-controller="Product" method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="@Model.Id" />
         <input type="hidden" asp-for="Image" />
-        <input type="hidden" asp-for="UploadImage" />
-
-
-
         <div class="mb-3">
             <label>İlanın Başlığı:</label>
             <input type="text" class="form-control" asp-for="@Model.ProductName" />
@@ -70,25 +61,7 @@
             <span asp-validation-for="@Model.UploadImage" class="text-danger"></span>
         </div>
 
-        @* <div class="form-group">
-        <label for="category">Category:</label>
-        <select name="Category" class="form-control">
-        @foreach (var item in Model.Category)
-        {
-        <option value="@item.Value">@item.Text</option>
-        }
-        </select>
-        </div>*@
-        @*<div class="form-group">
-        <label asp-for="CategoryId" class="control-label">Choose The Category</label>
-        <select asp-for="CategoryId" class="form-control">
-        @foreach (var category in Model.Category)
-        {
-        <option value="@category.Id">@category.Name</option>
-        }
-        </select>
-        <span asp-validation-for="CategoryId" class="text-danger"></span>
-        </div>*@
+       
         <div class="mb-3">
 
             <select class="form-select" asp-items="@ViewBag.Categories" asp-for="@Model.CategoryId">

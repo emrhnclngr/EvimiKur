@@ -18,15 +18,15 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
     [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly IUow _uow;
-        private readonly ICategoryService _categoryService;
-        private readonly IMapper _mapper;
 
-        public CategoryController(IUow uow, ICategoryService categoryService, IMapper mapper)
+        private readonly ICategoryService _categoryService;
+        
+
+        public CategoryController(ICategoryService categoryService)
         {
-            _uow = uow;
+
             _categoryService = categoryService;
-            _mapper = mapper;
+           
         }
 
         public IActionResult Index()
@@ -51,10 +51,9 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
         public async Task<IActionResult> List()
         {
 
-            //var response = await _categoryService.GetAllAsync();
             var response = await _categoryService.GetList(Common.Enums.StatusType.Active);
             return View(response);
-            //return this.ResponseView(response);
+
         }
         public async Task<IActionResult> PassiveCategoryList()
         {
@@ -89,15 +88,6 @@ namespace EvimiKur.UI.Areas.Admin.Controllers
                 var response = await _categoryService.RemoveAsync(id);
                 return this.ResponseRedirectAction(response, "PassiveCategoryList");
             }
-
-
-
-
-
-
-            //var category = await _categoryService.GetByIdAsync<CategoryListDto>(id);
-            //var response = await _categoryService.RemoveAsync(id);
-            //return this.ResponseRedirectAction(response, "List");
         }
 
     }
